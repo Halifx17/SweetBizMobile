@@ -37,7 +37,7 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> 
 
         Products products = list.get(position);
         holder.name.setText(products.getName());
-        holder.price.setText("\u20B1"+Long.toString(products.getPrice()));
+        holder.price.setText("\u20B1"+Long.toString(products.getPrice())+"/piece");
         Glide.with(context).load(products.getImageURL()).into(holder.image);
 
     }

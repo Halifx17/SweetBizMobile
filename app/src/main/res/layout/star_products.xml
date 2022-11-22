@@ -23,19 +23,20 @@
         <TextView
             android:id="@+id/starProductName"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/antic"
             android:gravity="left"
             android:text="Cakes"
             android:textSize="20sp"/>
+
         <TextView
             android:id="@+id/starProductPrice"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/antic"
             android:gravity="left"
-            android:text="Price"
-            android:textSize="20sp"/>
+            android:text="price"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

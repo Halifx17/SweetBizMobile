@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StarFragment">
+    tools:context=".StarFragment"
+    android:id="@+id/swipeRefreshLayout">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,9 +51,9 @@
             app:layout_constraintTop_toBottomOf="@+id/HotToday" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/MostPopularCakeimage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
             app:layout_constraintStart_toStartOf="@+id/MostPopularCake"
             app:layout_constraintTop_toBottomOf="@+id/MostPopularCake"
             tools:src="@tools:sample/avatars" />
@@ -56,8 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="25% Off for a Table of Two"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintStart_toStartOf="@+id/MostPopularCakeimage"
+            app:layout_constraintTop_toBottomOf="@+id/MostPopularCakeimage" />
 
         <TextView
             android:id="@+id/discountDetails"
@@ -86,6 +94,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.157"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CategoryTitle">
 
@@ -282,11 +291,10 @@
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <ScrollView
+        <HorizontalScrollView
             android:id="@+id/scrollableMostPopularProducts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="@+id/MostPopularProducts"
             app:layout_constraintTop_toBottomOf="@+id/MostPopularProducts">
 
@@ -418,7 +426,7 @@
             </LinearLayout>
 
 
-        </ScrollView>
+        </HorizontalScrollView>
 
         <TextView
             android:id="@+id/SpecialOffers"
@@ -434,11 +442,13 @@
             android:id="@+id/starRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/SpecialOffers"
             app:layout_constraintTop_toBottomOf="@+id/SpecialOffers" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 
-</ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

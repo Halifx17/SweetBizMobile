@@ -2,12 +2,14 @@ package com.example.sweetbizmobile;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,10 +33,13 @@ import java.util.ArrayList;
 
 public class StarFragment extends Fragment {
 
+    private static final String DEFAULT_IMG = "https://firebasestorage.googleapis.com/v0/b/sweetbiz-89782.appspot.com/o/Images%2Fdefault-image.jpg?alt=media&token=";
+
     RecyclerView recyclerView;
     ArrayList<Products> list;
     DatabaseReference databaseReference;
     StarAdapter starAdapter;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,6 +87,8 @@ public class StarFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_star,container,false);
 
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+
         recyclerView = view.findViewById(R.id.starRecyclerView);
         databaseReference = FirebaseDatabase.getInstance().getReference("FinishedProducts");
         list = new ArrayList<>();
@@ -95,9 +103,6 @@ public class StarFragment extends Fragment {
 
 
                 Products products = dataSnapshot.getValue(Products.class);
-
-
-
                 list.add(products);
 
                 }
@@ -110,19 +115,31 @@ public class StarFragment extends Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                swipeRefreshLayout.setRefreshing(false);
+                RearrangeItems();
 
 
-
-
-
-
-
-
-
+            }
+        });
 
 
 
 
         return view;
+
+
+    }
+
+
+
+
+    public void RearrangeItems(){
+        Collections.shuffle(list);
+        starAdapter = new StarAdapter(getContext(),list);
+        recyclerView.setAdapter(starAdapter);
     }
 }
