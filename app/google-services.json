@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1017194147224",
+    "project_id": "sweetbiz-89782",
+    "storage_bucket": "sweetbiz-89782.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017194147224:android:5c7e55a6323a8fb2a48fed",
+        "android_client_info": {
+          "package_name": "com.example.sweetbizmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017194147224-hh2tsg9tbbi1fmb2ob3hsmds2qi524s5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA7g797y1MpLoLa0Uux6U5ngsbUqz-7mI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017194147224-hh2tsg9tbbi1fmb2ob3hsmds2qi524s5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

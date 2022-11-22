@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/Star"
+        android:id="@+id/item1"
+        android:icon="@drawable/ic_star"/>
+    <item android:title="@string/Store"
+        android:id="@+id/item2"
+        android:icon="@drawable/ic_store"/>
+    <item android:title="@string/Messages"
+        android:id="@+id/item3"
+        android:icon="@drawable/ic_message"/>
+    <item android:title="@string/Cart"
+        android:id="@+id/item4"
+        android:icon="@drawable/ic_cart"/>
+    <item android:title="@string/Profile"
+        android:id="@+id/item5"
+        android:icon="@drawable/ic_person"/>
+
+</menu>

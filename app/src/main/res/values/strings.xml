@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SweetBizMobile</string>
+    <string name="SweetBiz">SweetBiz</string>
+    <string name="Username">Username</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="LogIn">Login</string>
+    <string name="Register">Register?</string>
+    <string name="Register2">Register</string>
+    <string name="Registration">Registration</string>
+    <string name="Slogan">It\'s All About the Food</string>
+    <string name="Star">Star</string>
+    <string name="Store">Store</string>
+    <string name="Messages">Messages</string>
+    <string name="Cart">Cart</string>
+    <string name="Profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
