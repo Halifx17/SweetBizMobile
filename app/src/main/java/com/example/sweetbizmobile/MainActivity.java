@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         editEmail = findViewById(R.id.LogIn_Edit_Email);
         editPassword = findViewById(R.id.LogIn_Edit_Password);
-        editTextEmail = (TextInputLayout) findViewById(R.id.EditText_Email);
-        editTextPassword = (TextInputLayout) findViewById(R.id.EditText_Password);
+        editTextEmail =  findViewById(R.id.EditText_Email);
+        editTextPassword =  findViewById(R.id.EditText_Password);
 
     }
 
@@ -87,26 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-/*
-            mAuth.signInWithEmailAndPassword(email,password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            if(task.isSuccessful()){
-
-                                Toast.makeText(MainActivity.this, "Log In Successful", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(getApplicationContext(), Home.class);
-                                startActivity(intent);
-
-                            }else{
-                                Toast.makeText(MainActivity.this, "Email or Password is incorrect", Toast.LENGTH_LONG).show();
-                            }
-
-                        }
-                    });
-
- */
         }
 
     }
