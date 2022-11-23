@@ -77,10 +77,12 @@
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/LogInButton"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/login_button"
         android:fontFamily="@font/antic"
         android:onClick="LogIn"
@@ -88,9 +90,8 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         app:errorTextColor="@color/red"
-        app:layout_constraintStart_toStartOf="@+id/EditText_Password"
-        app:layout_constraintTop_toBottomOf="@+id/EditText_Password" />
-
+        app:layout_constraintStart_toStartOf="@+id/checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/RegisterButton"
@@ -121,6 +122,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember Me"
+        app:layout_constraintStart_toStartOf="@+id/EditText_Password"
+        app:layout_constraintTop_toBottomOf="@+id/EditText_Password" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

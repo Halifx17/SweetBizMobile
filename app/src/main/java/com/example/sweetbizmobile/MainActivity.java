@@ -6,10 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editEmail, editPassword;
     TextInputLayout editTextEmail, editTextPassword;
+    CheckBox remember;
+    String ifChecked;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,41 @@ public class MainActivity extends AppCompatActivity {
         editTextEmail =  findViewById(R.id.EditText_Email);
         editTextPassword =  findViewById(R.id.EditText_Password);
 
+        remember = findViewById(R.id.checkBox);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("checkbox",MODE_PRIVATE);
+        String checkbox = sharedPreferences.getString("remember","");
+        if(checkbox.equals("true")){
+            Toast.makeText(MainActivity.this,"Log In Successful",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(),Home.class);
+            startActivity(intent);
+
+        }else if(checkbox.equals("false")){
+            Toast.makeText(MainActivity.this,"Please Sign In",Toast.LENGTH_SHORT).show();
+        }
+
+        remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(compoundButton.isChecked()){
+                    ifChecked = "true";
+
+                }else if(!compoundButton.isChecked()){
+                    SharedPreferences sharedPreferences = getSharedPreferences("checkbox",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("remember","false");
+                    editor.apply();
+
+
+                }
+
+            }
+        });
+
     }
+
+
 
 
     public void LogIn(View view) {
@@ -77,6 +118,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if(task.isSuccessful()){
+                        if(ifChecked.equals("true")) {
+                            SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("remember", "true");
+                            editor.apply();
+                        }
                         Toast.makeText(MainActivity.this,"Log In Successful",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),Home.class);
                         startActivity(intent);
