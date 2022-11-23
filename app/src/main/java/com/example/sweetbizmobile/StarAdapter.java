@@ -1,11 +1,15 @@
 package com.example.sweetbizmobile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,14 +18,16 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> {
+public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> implements Filterable {
 
     Context context;
-    ArrayList<Products> list;
+    ArrayList<Products> list, filterList;
+    FilterStat filter;
 
     public StarAdapter(Context context, ArrayList<Products> list) {
         this.context = context;
         this.list = list;
+        this.filterList = list;
     }
 
     @NonNull
@@ -47,7 +53,15 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> 
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    @Override
+    public Filter getFilter() {
+        if(filter == null){
+            filter = new FilterStat(this,filterList);
+        }
+        return filter;
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView name, price;
         ImageView image;
@@ -58,6 +72,18 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> 
             image = itemView.findViewById(R.id.starProductImg);
             name = itemView.findViewById(R.id.starProductName);
             price = itemView.findViewById(R.id.starProductPrice);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getBindingAdapterPosition();
+            Intent intent = new Intent(context,ViewProduct.class);
+            intent.putExtra("name",list.get(position).getName());
+            intent.putExtra("price",list.get(position).getPrice());
+            intent.putExtra("imageUrl",list.get(position).getImageURL());
+            context.startActivity(intent);
+
         }
     }
 }
