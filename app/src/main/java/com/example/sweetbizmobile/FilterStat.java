@@ -26,7 +26,7 @@ public class FilterStat extends Filter {
             ArrayList<Products> filteredModels = new ArrayList<>();
             for(int i=0; i<filterList.size(); i++) {
 
-                if (filterList.get(i).getName().toUpperCase().contains(constraint)) {
+                if (filterList.get(i).getName().toUpperCase().contains(constraint)||filterList.get(i).getCategory().toUpperCase().contains(constraint)) {
 
                     filteredModels.add(filterList.get(i));
                 }

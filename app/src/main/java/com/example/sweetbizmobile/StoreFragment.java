@@ -185,6 +185,8 @@ public class StoreFragment extends Fragment {
     private void loadStoreData() {
         progressBar.setVisibility(View.VISIBLE);
 
+        list.clear();
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,12 +35,27 @@ public class Home extends AppCompatActivity {
                         .replace(R.id.frameLayout, new StarFragment())
                                 .commit();
 
+        Intent intent = getIntent();
+        String fragment = intent.getStringExtra("fragment");
+
+        if(fragment != null && fragment.equals("cartFragment")) {
+
+            Log.d("Message", fragment);
+            Fragment selectedFragment = new CartFragment();
+            bottomNavigationView.setSelectedItemId(R.id.item4);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frameLayout, selectedFragment)
+                    .commit();
+        }
+
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.item1:
                         selectedFragment = new StarFragment();
                         break;
@@ -65,8 +81,14 @@ public class Home extends AppCompatActivity {
 
 
                 return true;
+
+
+
             }
         });
+
+
+
 
 
     }

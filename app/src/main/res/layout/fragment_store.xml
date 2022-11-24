@@ -38,7 +38,7 @@
                 android:layout_toStartOf="@+id/sortBtn"
                 android:background="@drawable/shape_rectangle"
                 android:drawableStart="@drawable/ic_search"
-                android:hint="Search"
+                android:hint="Search for Food, Brand and Categories"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray" />
