@@ -31,10 +31,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     Context context;
     ArrayList<CartProducts> list;
+    QuantityListener quantityListener;
+    ArrayList<String> arrayList0 = new ArrayList<>();
 
-    public CartAdapter(Context context, ArrayList<CartProducts> list) {
+    public CartAdapter(Context context, ArrayList<CartProducts> list, QuantityListener quantityListener) {
         this.context = context;
         this.list = list;
+        this.quantityListener = quantityListener;
     }
 
     @NonNull
@@ -96,8 +99,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     if(checkBox.isChecked()){
+                        arrayList0.add(itemNo.getText().toString());
                         Log.d("CheckBox", itemNo.getText().toString());
+                    }else{
+                        arrayList0.remove(itemNo.getText().toString());
                     }
+                    quantityListener.onQuantityChange(arrayList0);
                 }
             });
 
@@ -117,9 +124,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             });
 
  */
-
-
-
 
             itemView.findViewById(R.id.addBtn).setOnClickListener(new View.OnClickListener() {
                 @Override

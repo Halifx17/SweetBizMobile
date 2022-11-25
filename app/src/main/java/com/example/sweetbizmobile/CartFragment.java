@@ -1,5 +1,6 @@
 package com.example.sweetbizmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,12 +33,12 @@ import java.util.ArrayList;
  * Use the {@link CartFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements QuantityListener{
 
 
     RecyclerView recyclerView;
     ArrayList<CartProducts> list;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, cartDatabase;
     CartAdapter cartAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -108,10 +109,11 @@ public class CartFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerCart);
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        cartAdapter = new CartAdapter(getContext(),list);
+        cartAdapter = new CartAdapter(getContext(),list,this);
         recyclerView.setAdapter(cartAdapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -132,37 +134,44 @@ public class CartFragment extends Fragment {
             }
         });
 
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-
-            }
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         return view;
     }
 
 
+    @Override
+    public void onQuantityChange(ArrayList<String> arrayList) {
 
+        cartDatabase = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
+
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String itemNoID;
+
+                for(int i = arrayList.size()-1; i >= 0; i--){
+                    itemNoID = arrayList.get(i);
+                    cartDatabase.child(itemNoID).removeValue();
+                }
+
+                list.clear();
+                cartAdapter.notifyDataSetChanged();
+
+                Intent intent = new Intent(getContext(),Home.class);
+                String fragment = "cartFragmentRefresh";
+                intent.putExtra("fragment",fragment);
+                startActivity(intent);
+                getActivity().overridePendingTransition(0,0);
+
+
+
+
+             //   Toast.makeText(getContext(),arrayList.toString(),Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getContext(),Integer.toString(arrayList.size()),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
 }

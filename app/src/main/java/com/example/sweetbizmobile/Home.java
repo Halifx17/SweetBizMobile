@@ -47,6 +47,15 @@ public class Home extends AppCompatActivity {
                     .beginTransaction()
                     .replace(R.id.frameLayout, selectedFragment)
                     .commit();
+        }else if(fragment != null && fragment.equals("cartFragmentRefresh")) {
+
+            Log.d("Message", fragment);
+            Fragment selectedFragment = new CartFragment();
+            bottomNavigationView.setSelectedItemId(R.id.item4);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frameLayout, selectedFragment)
+                    .commit();
         }
 
 
