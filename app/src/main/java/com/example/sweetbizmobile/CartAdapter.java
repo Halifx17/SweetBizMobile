@@ -31,7 +31,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     Context context;
     ArrayList<CartProducts> list;
-    ArrayList<String> arrayList = new ArrayList<>();
 
     public CartAdapter(Context context, ArrayList<CartProducts> list) {
         this.context = context;
@@ -60,16 +59,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.quantity.setText(Long.toString(cartProducts.getQuantity()));
         holder.itemNo.setText(Long.toString(cartProducts.getItemno()));
         Glide.with(context).load(cartProducts.getImageURL()).into(holder.image);
-
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(holder.checkBox.isChecked()){
-                    Toast.makeText(context,holder.itemNo.getText().toString(),Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
 
 
 
@@ -102,6 +91,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             quantity.setVisibility(View.INVISIBLE);
             itemNo = itemView.findViewById(R.id.cartProductItemNumber);
             itemNo.setVisibility(View.INVISIBLE);
+
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if(checkBox.isChecked()){
+                        Log.d("CheckBox", itemNo.getText().toString());
+                    }
+                }
+            });
 
 /*
 
