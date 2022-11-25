@@ -12,6 +12,12 @@
         android:orientation="vertical"
         android:paddingHorizontal="10dp">
 
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -27,6 +33,9 @@
             android:id="@+id/recyclerCart"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+
+
 
     </LinearLayout>
 

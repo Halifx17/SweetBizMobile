@@ -122,31 +122,6 @@ public class ViewProduct extends AppCompatActivity {
                 });
 
 
-
-                /*
-
-                userDatabase.push().setValue(cart).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ViewProduct.this, "Item Added Successfully", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(ViewProduct.this, "Failed Registration", Toast.LENGTH_SHORT).show();
-                        }
-
-
-                    }
-                });
-
-                 */
-
-
-
-
-
-
-
             }
         });
 

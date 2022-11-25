@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,6 +44,10 @@ public class CartFragment extends Fragment {
     FirebaseAuth mAuth;
 
     String userID;
+
+    Button deleteBtn;
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,6 +95,7 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cart,container,false);
 
+        deleteBtn = view.findViewById(R.id.deleteBtn);
         mAuth = FirebaseAuth.getInstance();
 
         user = mAuth.getCurrentUser();
@@ -122,8 +129,38 @@ public class CartFragment extends Fragment {
             }
         });
 
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         return view;
     }
+
+
+
+
 }
