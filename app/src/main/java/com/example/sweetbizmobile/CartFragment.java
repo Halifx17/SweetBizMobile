@@ -15,9 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -48,8 +51,10 @@ public class CartFragment extends Fragment implements QuantityListener{
     String userID;
 
     Button deleteBtn;
+    ExtendedFloatingActionButton checkOutBtn;
 
-    ArrayList<String> arrayList;
+    CheckBox selectAllCheckBox;
+    TextView cartProductTotalPrice;
 
 
 
@@ -99,6 +104,11 @@ public class CartFragment extends Fragment implements QuantityListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cart,container,false);
 
+        cartProductTotalPrice = view.findViewById(R.id.cartProductTotalPrice);
+
+        selectAllCheckBox = view.findViewById(R.id.cartProductSelectAllCheckBox);
+        checkOutBtn = view.findViewById(R.id.checkOutBtn);
+
         deleteBtn = view.findViewById(R.id.deleteBtn);
         mAuth = FirebaseAuth.getInstance();
 
@@ -113,6 +123,8 @@ public class CartFragment extends Fragment implements QuantityListener{
         recyclerView.setAdapter(cartAdapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
+
+
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -134,7 +146,30 @@ public class CartFragment extends Fragment implements QuantityListener{
             }
         });
 
+
+
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                swipeRefreshLayout.setRefreshing(false);
+
+
+            }
+        });
+
+
+
+        selectAllCheckBox.setChecked(true);
+
+
+
+
         return view;
+
+
     }
 
 
@@ -142,7 +177,6 @@ public class CartFragment extends Fragment implements QuantityListener{
     public void onQuantityChange(ArrayList<String> arrayList) {
 
         cartDatabase = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
-
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,13 +199,48 @@ public class CartFragment extends Fragment implements QuantityListener{
                 getActivity().overridePendingTransition(0,0);
 
 
-
-
              //   Toast.makeText(getContext(),arrayList.toString(),Toast.LENGTH_SHORT).show();
              //   Toast.makeText(getContext(),Integer.toString(arrayList.size()),Toast.LENGTH_SHORT).show();
 
             }
         });
+
+        Log.d("CheckBox", arrayList.toString());
+
+        checkOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
+
+
+    }
+
+    @Override
+    public void onCheckBoxChange(ArrayList<CheckBox> arrayList) {
+
+        selectAllCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                if(selectAllCheckBox.isChecked()){
+                    cartAdapter.checkBoxOperation(arrayList,true);
+                   //  cartAdapter.selectAll();
+                    //  recyclerView.smoothScrollToPosition(cartAdapter.getItemCount() - 1);
+                }else{
+                    cartAdapter.checkBoxOperation(arrayList,false);
+                    //  cartAdapter.unselectAll();
+                    //  recyclerView.smoothScrollToPosition(0);
+                }
+
+            }
+        });
+
 
     }
 }

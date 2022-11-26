@@ -2,6 +2,8 @@ package com.example.sweetbizmobile;
 
 public class CartProducts {
 
+
+
     String category, imageURL, name;
     Long itemno, price, quantity;
     int amount;

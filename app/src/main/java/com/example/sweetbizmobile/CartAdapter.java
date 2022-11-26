@@ -29,10 +29,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     FirebaseAuth mAuth;
     String userID;
 
+    boolean isSelectedAll;
+
     Context context;
     ArrayList<CartProducts> list;
     QuantityListener quantityListener;
     ArrayList<String> arrayList0 = new ArrayList<>();
+    ArrayList<CheckBox> checkBoxes = new ArrayList<>();
 
     public CartAdapter(Context context, ArrayList<CartProducts> list, QuantityListener quantityListener) {
         this.context = context;
@@ -52,8 +55,35 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return new CartViewHolder(view);
     }
 
+    public void checkBoxOperation(ArrayList<CheckBox> checkBoxList, boolean what){
+        for (CheckBox checkBox : checkBoxList ){
+            checkBox.setChecked(what);
+        }
+    }
+
+    public void selectAll(){
+
+        isSelectedAll=true;
+        notifyDataSetChanged();
+
+    }
+    public void unselectAll(){
+
+
+
+        isSelectedAll=false;
+        notifyDataSetChanged();
+
+
+    }
+
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.CartViewHolder holder, int position) {
+
+        mAuth = FirebaseAuth.getInstance();
+
+        user = mAuth.getCurrentUser();
+        userID = user.getUid();
 
         CartProducts cartProducts = list.get(position);
         holder.name.setText(cartProducts.getName());
@@ -62,6 +92,31 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.quantity.setText(Long.toString(cartProducts.getQuantity()));
         holder.itemNo.setText(Long.toString(cartProducts.getItemno()));
         Glide.with(context).load(cartProducts.getImageURL()).into(holder.image);
+        arrayList0.add(holder.itemNo.getText().toString());
+        quantityListener.onQuantityChange(arrayList0);
+
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(holder.checkBox.isChecked()){
+                    arrayList0.add(holder.itemNo.getText().toString());
+                   // Log.d("CheckBox", holder.itemNo.getText().toString());
+                }else{
+                    arrayList0.remove(holder.itemNo.getText().toString());
+                }
+                quantityListener.onQuantityChange(arrayList0);
+            }
+
+
+        });
+
+
+
+
+        checkBoxes.add(holder.checkBox);
+        quantityListener.onCheckBoxChange(checkBoxes);
+
 
 
 
@@ -80,10 +135,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mAuth = FirebaseAuth.getInstance();
-
-            user = mAuth.getCurrentUser();
-            userID = user.getUid();
 
             checkBox = itemView.findViewById(R.id.cartProductCheckBox);
             name = itemView.findViewById(R.id.cartProductName);
@@ -94,7 +145,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             quantity.setVisibility(View.INVISIBLE);
             itemNo = itemView.findViewById(R.id.cartProductItemNumber);
             itemNo.setVisibility(View.INVISIBLE);
+            checkBox.setChecked(true);
 
+
+
+
+
+
+
+
+
+
+/*
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -109,6 +171,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             });
 
 /*
+
+
 
             itemView.findViewById(R.id.deleteBtn).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,9 +189,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
  */
 
+
+
             itemView.findViewById(R.id.addBtn).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
 
                     int myAmount = Integer.parseInt(amount.getText().toString());
                     Long myQuantity = Long.parseLong(quantity.getText().toString());
@@ -141,6 +208,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     }
 
 
+                    String numberOnly= price.getText().toString().replaceAll("[^0-9]", "");
+                    Long myTotalPrice = Integer.parseInt(amount.getText().toString()) * Long.parseLong(numberOnly);
+                    Log.d("TAG",Long.toString(myTotalPrice));
 
                 }
             });
@@ -162,6 +232,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
                 }
             });
+
+
 
         }
 
