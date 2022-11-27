@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface QuantityListener {
     void onQuantityChange(ArrayList<String> arrayList);
     void onCheckBoxChange(ArrayList<CheckBox> arrayList);
+    void onTotalPriceChange(ArrayList<String> arrayList);
 }

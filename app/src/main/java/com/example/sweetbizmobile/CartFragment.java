@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -162,7 +163,8 @@ public class CartFragment extends Fragment implements QuantityListener{
 
 
 
-        selectAllCheckBox.setChecked(true);
+
+
 
 
 
@@ -190,13 +192,15 @@ public class CartFragment extends Fragment implements QuantityListener{
                 }
 
                 list.clear();
-                cartAdapter.notifyDataSetChanged();
+
 
                 Intent intent = new Intent(getContext(),Home.class);
                 String fragment = "cartFragmentRefresh";
                 intent.putExtra("fragment",fragment);
                 startActivity(intent);
                 getActivity().overridePendingTransition(0,0);
+
+
 
 
              //   Toast.makeText(getContext(),arrayList.toString(),Toast.LENGTH_SHORT).show();
@@ -210,7 +214,6 @@ public class CartFragment extends Fragment implements QuantityListener{
         checkOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
 
             }
@@ -243,4 +246,27 @@ public class CartFragment extends Fragment implements QuantityListener{
 
 
     }
+
+    @Override
+    public void onTotalPriceChange(ArrayList<String> arrayList) {
+
+
+
+        int size = arrayList.size();
+        int [] totalPriceArray = new int [size];
+        for(int i=0; i<size; i++) {
+            totalPriceArray[i] = Integer.parseInt(arrayList.get(i));
+        }
+
+        int totalSumOfPrice=0;
+        for(int i=0; i< totalPriceArray.length; i++) {
+            totalSumOfPrice += totalPriceArray[i];
+        }
+
+        cartProductTotalPrice.setText(Integer.toString(totalSumOfPrice));
+
+
+    }
+
+
 }

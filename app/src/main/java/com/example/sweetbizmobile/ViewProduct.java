@@ -33,6 +33,7 @@ public class ViewProduct extends AppCompatActivity {
     FirebaseAuth mAuth;
     String userID;
     int amount = 1;
+    Long totalPrice;
 
 
     @Override
@@ -49,6 +50,7 @@ public class ViewProduct extends AppCompatActivity {
         Long itemNo = intent.getLongExtra("itemNo",0);
         Long price = intent.getLongExtra("price",0);
         Long quantity = intent.getLongExtra("quantity",0);
+        totalPrice = price * amount;
 
         itemName = findViewById(R.id.ItemName);
         itemPrice = findViewById(R.id.ItemPrice);
@@ -89,7 +91,7 @@ public class ViewProduct extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                CartProducts cartProducts = new CartProducts(category,imageUrl,name,itemNo,price,quantity,amount);
+                CartProducts cartProducts = new CartProducts(category,imageUrl,name,itemNo,price,quantity,totalPrice,amount);
 
                 cartDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

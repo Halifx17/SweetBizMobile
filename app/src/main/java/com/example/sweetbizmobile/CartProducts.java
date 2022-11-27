@@ -5,19 +5,20 @@ public class CartProducts {
 
 
     String category, imageURL, name;
-    Long itemno, price, quantity;
+    Long itemno, price, quantity, totalPrice;
     int amount;
 
     public CartProducts() {
     }
 
-    public CartProducts(String category, String imageURL, String name, Long itemno, Long price, Long quantity, int amount) {
+    public CartProducts(String category, String imageURL, String name, Long itemno, Long price, Long quantity, Long totalPrice, int amount) {
         this.category = category;
         this.imageURL = imageURL;
         this.name = name;
         this.itemno = itemno;
         this.price = price;
         this.quantity = quantity;
+        this.totalPrice = totalPrice;
         this.amount = amount;
     }
 
@@ -69,6 +70,14 @@ public class CartProducts {
         this.quantity = quantity;
     }
 
+    public Long getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -77,3 +86,5 @@ public class CartProducts {
         this.amount = amount;
     }
 }
+
+

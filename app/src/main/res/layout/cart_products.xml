@@ -15,7 +15,8 @@
         android:orientation="horizontal">
 
         <CheckBox
-            android:checked="true"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
             android:id="@+id/cartProductCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,6 +122,15 @@
                 android:layout_toEndOf="@+id/cartProductName"
                 android:layout_alignBaseline="@+id/cartProductName"
                 android:text="99999"/>
+
+            <TextView
+                android:id="@+id/cartProductTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/cartProductName"
+                android:layout_alignBaseline="@+id/cartProductName"
+                android:text="6666"/>
 <!--
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/deleteBtn"
