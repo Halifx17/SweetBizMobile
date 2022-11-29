@@ -1,5 +1,6 @@
 package com.example.sweetbizmobile;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -57,6 +58,8 @@ public class CartFragment extends Fragment implements QuantityListener{
     CheckBox selectAllCheckBox;
     TextView cartProductTotalPrice;
 
+    ArrayList<String> arrayID = new ArrayList<>();
+    ArrayList<String> arrayPrice = new ArrayList<>();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -125,9 +128,6 @@ public class CartFragment extends Fragment implements QuantityListener{
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
 
-
-
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -148,9 +148,6 @@ public class CartFragment extends Fragment implements QuantityListener{
         });
 
 
-
-
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -162,11 +159,21 @@ public class CartFragment extends Fragment implements QuantityListener{
         });
 
 
+        checkOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("CheckOutID", arrayID.toString());
+                Log.d("CheckOutPrice", arrayPrice.toString());
+
+                Intent intent = new Intent(getContext(),CheckOut.class);
+                intent.putExtra("checkOutID",arrayID);
+                intent.putExtra("checkOutPrice",arrayPrice);
+                getContext().startActivity(intent);
 
 
-
-
-
+            }
+        });
 
 
         return view;
@@ -200,9 +207,6 @@ public class CartFragment extends Fragment implements QuantityListener{
                 startActivity(intent);
                 getActivity().overridePendingTransition(0,0);
 
-
-
-
              //   Toast.makeText(getContext(),arrayList.toString(),Toast.LENGTH_SHORT).show();
              //   Toast.makeText(getContext(),Integer.toString(arrayList.size()),Toast.LENGTH_SHORT).show();
 
@@ -210,16 +214,7 @@ public class CartFragment extends Fragment implements QuantityListener{
         });
 
         Log.d("CheckBox", arrayList.toString());
-
-        checkOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
-
-
+        arrayID = arrayList;
 
     }
 
@@ -233,16 +228,19 @@ public class CartFragment extends Fragment implements QuantityListener{
 
                 if(selectAllCheckBox.isChecked()){
                     cartAdapter.checkBoxOperation(arrayList,true);
-                   //  cartAdapter.selectAll();
-                    //  recyclerView.smoothScrollToPosition(cartAdapter.getItemCount() - 1);
+
                 }else{
                     cartAdapter.checkBoxOperation(arrayList,false);
-                    //  cartAdapter.unselectAll();
-                    //  recyclerView.smoothScrollToPosition(0);
+
                 }
 
             }
         });
+
+
+
+
+
 
 
     }
@@ -264,7 +262,7 @@ public class CartFragment extends Fragment implements QuantityListener{
         }
 
         cartProductTotalPrice.setText(Integer.toString(totalSumOfPrice));
-
+        arrayPrice = arrayList;
 
     }
 

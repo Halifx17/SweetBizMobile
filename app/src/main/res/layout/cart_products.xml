@@ -43,16 +43,17 @@
                 android:id="@+id/cartProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Country Name"
+                android:text="Item Name"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:id="@+id/cartProductDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description"
+                android:text=""
                 android:layout_marginTop="2dp"
                 android:layout_below="@id/cartProductName"
                 android:textColor="@color/black"
@@ -63,7 +64,7 @@
                 android:id="@+id/cartProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:text="Price"
                 android:layout_below="@id/cartProductDescription"
                 android:textColor="@color/black"

@@ -1,67 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CartFragment">
-
+    tools:context=".CheckOut">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipeRefreshLayout">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingHorizontal="10dp"
-        android:paddingBottom="55dp">
-
-        <Button
-            android:id="@+id/deleteBtn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delete" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="55dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:fontFamily="@font/antic"
-            android:text="Shopping Cart"
-            android:textSize="40sp"
-            android:paddingTop="5dp"
-            android:gravity="center"
-            android:background="@color/gray" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:fontFamily="@font/antic"
+                android:text="Check Out"
+                android:textSize="40sp"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:background="@color/gray" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerCart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCheckOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        </androidx.core.widget.NestedScrollView>
-
-
+            </androidx.core.widget.NestedScrollView>
 
 
-    </LinearLayout>
+
+
+        </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-        <CheckBox
-            android:id="@+id/cartProductSelectAllCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:layout_gravity="bottom"
+        app:layout_anchorGravity="center">
 
         <TextView
             android:id="@+id/total"
@@ -71,7 +61,7 @@
             android:layout_gravity="center" />
 
         <TextView
-            android:id="@+id/cartProductTotalPrice"
+            android:id="@+id/checkOutProductTotalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -80,15 +70,19 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
 
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/checkOutBtn"
+
+        android:id="@+id/placeOrderBtn"
         android:paddingStart="0dp"
         android:paddingEnd="0dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:gravity="center"
-        android:text="CheckOut"
+        android:text="PLACE ORDER"
         android:layout_marginBottom="5dp"/>
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
