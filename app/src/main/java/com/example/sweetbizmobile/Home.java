@@ -16,6 +16,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Home extends AppCompatActivity {
 
 
@@ -57,6 +62,15 @@ public class Home extends AppCompatActivity {
                     .replace(R.id.frameLayout, selectedFragment)
                     .commit();
         }
+
+        DateFormat df = new SimpleDateFormat("d-MMM-yyyy h:mm a");
+        String date = df.format(Calendar.getInstance().getTime());
+        Long d1 = new Date().getTime();
+        Long trimLongDate = d1/1000;
+
+
+        Log.d("DATE1", Long.toString(trimLongDate));
+        Log.d("DATE2", date);
 
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

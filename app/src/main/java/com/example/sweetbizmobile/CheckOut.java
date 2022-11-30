@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,28 +26,40 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class CheckOut extends AppCompatActivity{
 
     RecyclerView recyclerView;
     ArrayList<CartProducts> list;
-    DatabaseReference databaseReference, fromPathDatabaseReference, toPathDatabaseReference, deletePathDatabaseReference;
+    DatabaseReference databaseReference, fromPathDatabaseReference,
+            toPathDatabaseReference, deletePathDatabaseReference,
+            orderAdminDatabaseReference, orderUserDatabaseReference;
     CheckOutAdapter checkOutAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
 
     FirebaseUser user;
     FirebaseAuth mAuth;
 
-    String userID;
+    String userID, userName;
 
     ExtendedFloatingActionButton placeOrderBtn;
 
     String stringCheckOutID, stringCheckOutPrice;
     TextView checkOutTotalPrice;
 
+    DateFormat dateFormat;
+    String stringDate;
+    Long longDate;
+    Long trimLongDate;
+
     ArrayList<String> checkOutID = new ArrayList<>();
     ArrayList<String> checkOutPrice = new ArrayList<>();
+    ArrayList<String> checkOutNames = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +69,10 @@ public class CheckOut extends AppCompatActivity{
         Bundle bundle = getIntent().getExtras();
         checkOutID = bundle.getStringArrayList("checkOutID");
         checkOutPrice = bundle.getStringArrayList("checkOutPrice");
+        checkOutNames = bundle.getStringArrayList("checkOutNames");
         Log.d("MyArrayID", checkOutID.toString());
         Log.d("MyArrayPrice", checkOutPrice.toString());
+        Log.d("MyArrayNames", checkOutNames.toString());
 
         checkOutTotalPrice = findViewById(R.id.checkOutProductTotalPrice);
 
@@ -68,6 +83,7 @@ public class CheckOut extends AppCompatActivity{
 
         user = mAuth.getCurrentUser();
         userID = user.getUid();
+        userName = user.getEmail();
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         recyclerView = findViewById(R.id.recyclerCheckOut);
@@ -76,9 +92,9 @@ public class CheckOut extends AppCompatActivity{
         checkOutAdapter = new CheckOutAdapter(getApplication(),list);
         recyclerView.setAdapter(checkOutAdapter);
 
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
+
+
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -115,21 +131,102 @@ public class CheckOut extends AppCompatActivity{
 
         checkOutTotalPrice.setText(Integer.toString(totalSumOfPrice));
 
-        int finalTotalSumOfPrice = totalSumOfPrice;
-
         placeOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                dateFormat = new SimpleDateFormat("d-MMM-yyyy h:mm a");
+                stringDate = dateFormat.format(Calendar.getInstance().getTime());
+                longDate = new Date().getTime();
+                trimLongDate = longDate/1000;
+
                 copyRecord();
+                placeOrder();
+                Intent intent = new Intent(getApplicationContext(),OrderPlaced.class);
+                getApplication().startActivity(intent);
+
+            }
+        });
 
 
 
+        //MMM-d-yyyy h:mm a
+
+
+
+
+
+    }
+
+    private void placeOrder() {
+
+        int size = checkOutPrice.size();
+        int [] totalPriceArray = new int [size];
+        for(int i=0; i<size; i++) {
+            totalPriceArray[i] = Integer.parseInt(checkOutPrice.get(i));
+        }
+
+        int totalSumOfPrice=0;
+        for(int i=0; i< totalPriceArray.length; i++) {
+            totalSumOfPrice += totalPriceArray[i];
+        }
+
+        int finalTotalSumOfPrice = totalSumOfPrice;
+
+        orderUserDatabaseReference = FirebaseDatabase.getInstance().getReference("OrdersUser").child(userID).child(Long.toString(trimLongDate));
+        orderAdminDatabaseReference = FirebaseDatabase.getInstance().getReference("Orders").child(Long.toString(trimLongDate));
+
+        String productNames = checkOutNames.toString();
+        String finalProductNames = productNames.substring(1,productNames.length()-1);
+
+        Orders orders = new Orders(userName,stringDate,finalProductNames,"pending",trimLongDate,finalTotalSumOfPrice);
+
+        orderUserDatabaseReference.setValue(orders).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Order Placed",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Order Unsuccessful",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        orderAdminDatabaseReference.setValue(orders).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Order Placed",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Order Unsuccessful",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        /*
+
+        orderAdminDatabaseReference.push(orders).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Order Placed",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Order Unsuccessful",Toast.LENGTH_SHORT).show();
+                }
 
 
 
             }
         });
+
+         */
+
+
+
 
 
 
@@ -138,7 +235,7 @@ public class CheckOut extends AppCompatActivity{
     private void copyRecord() {
 
         fromPathDatabaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
-        toPathDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child(userID);
+        toPathDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child(userID).child(Long.toString(trimLongDate));
         deletePathDatabaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
 
         fromPathDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -151,7 +248,6 @@ public class CheckOut extends AppCompatActivity{
                             String itemID = dataSnapshot.getKey();
                             CartProducts cartProducts = dataSnapshot.getValue(CartProducts.class);
                             toPathDatabaseReference.child(itemID).setValue(cartProducts);
-                            deletePathDatabaseReference.child(itemID).removeValue();
                         }
                     }
 
@@ -166,8 +262,29 @@ public class CheckOut extends AppCompatActivity{
         });
 
 
-    }
+        deletePathDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    for(int i = checkOutID.size()-1; i>= 0; i--){
+                        if(dataSnapshot.getKey().equals(checkOutID.get(i))) {
+                            String itemID = dataSnapshot.getKey();
+                            deletePathDatabaseReference.child(itemID).removeValue();
+                        }
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
     /*
     public void copyFirebaseData() {

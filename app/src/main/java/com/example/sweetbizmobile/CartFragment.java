@@ -60,6 +60,8 @@ public class CartFragment extends Fragment implements QuantityListener{
 
     ArrayList<String> arrayID = new ArrayList<>();
     ArrayList<String> arrayPrice = new ArrayList<>();
+    ArrayList<String> arrayNames = new ArrayList<>();
+    ArrayList<String> arrayAmount = new ArrayList<>();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -169,6 +171,7 @@ public class CartFragment extends Fragment implements QuantityListener{
                 Intent intent = new Intent(getContext(),CheckOut.class);
                 intent.putExtra("checkOutID",arrayID);
                 intent.putExtra("checkOutPrice",arrayPrice);
+                intent.putExtra("checkOutNames",arrayNames);
                 getContext().startActivity(intent);
 
 
@@ -263,6 +266,23 @@ public class CartFragment extends Fragment implements QuantityListener{
 
         cartProductTotalPrice.setText(Integer.toString(totalSumOfPrice));
         arrayPrice = arrayList;
+
+    }
+
+    @Override
+    public void onNameChange(ArrayList<String> arrayList) {
+
+        Log.d("onNameChange:", arrayList.toString());
+
+        arrayNames = arrayList;
+    }
+
+    @Override
+    public void onAmountChange(ArrayList<String> arrayList) {
+
+        Log.d("onAmountChange:", arrayList.toString());
+
+        arrayAmount = arrayList;
 
     }
 

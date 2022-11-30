@@ -40,9 +40,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     QuantityListener quantityListener;
 
 
-    ArrayList<String> arrayList0 = new ArrayList<>();
+    ArrayList<String> itemNumbers = new ArrayList<>();
     ArrayList<CheckBox> checkBoxes = new ArrayList<>();
     ArrayList<String> totalPrices = new ArrayList<>();
+    ArrayList<String> itemNames = new ArrayList<>();
+    ArrayList<String> itemAmount = new ArrayList<>();
 
     public CartAdapter(Context context, ArrayList<CartProducts> list, QuantityListener quantityListener) {
         this.context = context;
@@ -86,12 +88,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.itemNo.setText(Long.toString(cartProducts.getItemno()));
         holder.totalPrice.setText(Long.toString(cartProducts.getTotalPrice()));
         Glide.with(context).load(cartProducts.getImageURL()).into(holder.image);
+
         /*
         arrayList0.add(holder.itemNo.getText().toString());
         quantityListener.onQuantityChange(arrayList0);
         totalPrices.add(holder.totalPrice.getText().toString());
         quantityListener.onTotalPriceChange(totalPrices);
-
          */
 
 
@@ -103,16 +105,23 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
                 if(holder.checkBox.isChecked()){
-                    arrayList0.add(holder.itemNo.getText().toString());
+                    itemNumbers.add(holder.itemNo.getText().toString());
                     totalPrices.add(holder.totalPrice.getText().toString());
+                    itemNames.add(holder.name.getText().toString()+" x "+holder.amount.getText().toString());
+                    itemAmount.add(holder.amount.getText().toString());
 
                 }else{
-                    arrayList0.remove(holder.itemNo.getText().toString());
+                    itemNumbers.remove(holder.itemNo.getText().toString());
                     totalPrices.remove(holder.totalPrice.getText().toString());
+                    itemNames.remove(holder.name.getText().toString()+" x "+holder.amount.getText().toString());
+                    itemAmount.remove(holder.amount.getText().toString());
+
 
                 }
-                quantityListener.onQuantityChange(arrayList0);
+                quantityListener.onQuantityChange(itemNumbers);
                 quantityListener.onTotalPriceChange(totalPrices);
+                quantityListener.onNameChange(itemNames);
+                quantityListener.onAmountChange(itemAmount);
 
 
             }
