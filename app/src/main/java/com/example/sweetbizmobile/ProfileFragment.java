@@ -1,5 +1,6 @@
 package com.example.sweetbizmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +21,15 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    FirebaseUser user;
+    FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
+
+    TextView profileEmail;
+    MaterialButton viewAllOrdersButton;
+
+    String userID;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +75,28 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile,container,false);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        userID = user.getUid();
+
+
+        profileEmail = view.findViewById(R.id.profileEmail);
+        viewAllOrdersButton = view.findViewById(R.id.viewAllOrdersBtn);
+
+        profileEmail.setText(user.getEmail());
+
+
+        viewAllOrdersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),AllOrders.class);
+                startActivity(intent);
+            }
+        });
+
+
+        return view;
     }
 }

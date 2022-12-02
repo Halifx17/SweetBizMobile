@@ -235,7 +235,7 @@ public class CheckOut extends AppCompatActivity{
     private void copyRecord() {
 
         fromPathDatabaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
-        toPathDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child(userID).child(Long.toString(trimLongDate));
+        toPathDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child(Long.toString(trimLongDate));
         deletePathDatabaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
 
         fromPathDatabaseReference.addValueEventListener(new ValueEventListener() {
