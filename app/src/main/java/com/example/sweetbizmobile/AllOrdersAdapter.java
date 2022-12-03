@@ -1,13 +1,16 @@
 package com.example.sweetbizmobile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,12 +26,16 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
     FirebaseAuth mAuth;
     String userID;
 
+
+    Activity activity;
     Context context;
     ArrayList<Orders> list;
+    ArrayList<CartProducts> list2;
 
-    public AllOrdersAdapter(Context context, ArrayList<Orders> list) {
+    public AllOrdersAdapter(Context context, ArrayList<Orders> list, ArrayList<CartProducts> list2) {
         this.context = context;
         this.list = list;
+        this.list2 = list2;
     }
 
     @NonNull
@@ -45,6 +52,11 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
         Orders orders = list.get(position);
         holder.allOrdersTotalPrice.setText(Integer.toString(orders.getRevenue()));
 
+        AllOrdersInnerAdapter allOrdersInnerAdapter = new AllOrdersInnerAdapter(context,list2);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
+        holder.innerRecyclerAllOrders.setLayoutManager(linearLayoutManager);
+        holder.innerRecyclerAllOrders.setAdapter(allOrdersInnerAdapter);
+
 
 
     }
@@ -57,14 +69,14 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
     public class AllOrdersViewholder extends RecyclerView.ViewHolder {
 
         TextView allOrdersTotalPrice, name, price, amount;
+        RecyclerView innerRecyclerAllOrders;
 
         public AllOrdersViewholder(@NonNull View itemView) {
             super(itemView);
 
             allOrdersTotalPrice = itemView.findViewById(R.id.allOrdersTotalPrice);
-            name = itemView.findViewById(R.id.allOrdersProductName);
             price = itemView.findViewById(R.id.allOrdersTotalPrice);
-            amount = itemView.findViewById(R.id.allOrdersProductAmount);
+            innerRecyclerAllOrders = itemView.findViewById(R.id.innerRecyclerAllOrders);
 
 
         }

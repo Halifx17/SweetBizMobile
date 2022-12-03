@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,12 +18,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AllOrders extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<Orders> list;
-    DatabaseReference databaseReference;
+    ArrayList<CartProducts> list2;
+    ArrayList<String> orderID;
+    ArrayList<String> myOrderID;
+    DatabaseReference databaseReference, innerDatabaseReference,
+            databaseReference2;
     AllOrdersAdapter allOrdersAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -38,6 +44,8 @@ public class AllOrders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_orders);
 
+
+
         mAuth = FirebaseAuth.getInstance();
 
         user = mAuth.getCurrentUser();
@@ -45,9 +53,45 @@ public class AllOrders extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerAllOrders);
         list = new ArrayList<>();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        allOrdersAdapter = new AllOrdersAdapter(this,list);
+        list2 = new ArrayList<>();
+        orderID = new ArrayList<>();
+        myOrderID = new ArrayList<>();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+   //     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        allOrdersAdapter = new AllOrdersAdapter(this,list,list2);
         recyclerView.setAdapter(allOrdersAdapter);
+
+        databaseReference2 = FirebaseDatabase.getInstance().getReference("OrdersUser").child(userID);
+
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    orderID.add(dataSnapshot.getKey());
+                }
+                Collections.reverse(orderID);
+                myOrderID = orderID;
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("OrdersUser").child(userID);
 
@@ -58,9 +102,32 @@ public class AllOrders extends AppCompatActivity {
 
                     Orders orders = dataSnapshot.getValue(Orders.class);
                     list.add(orders);
-
                 }
                 allOrdersAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        innerDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child("1669918768");
+
+        innerDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+
+                    CartProducts cartProducts = dataSnapshot.getValue(CartProducts.class);
+                    list2.add(cartProducts);
+                }
+
+                allOrdersAdapter.notifyDataSetChanged();
+
             }
 
             @Override
