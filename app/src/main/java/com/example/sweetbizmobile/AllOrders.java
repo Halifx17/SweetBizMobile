@@ -61,35 +61,8 @@ public class AllOrders extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
    //     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        allOrdersAdapter = new AllOrdersAdapter(this,list,list2);
+        allOrdersAdapter = new AllOrdersAdapter(this,list);
         recyclerView.setAdapter(allOrdersAdapter);
-
-        databaseReference2 = FirebaseDatabase.getInstance().getReference("OrdersUser").child(userID);
-
-        databaseReference2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    orderID.add(dataSnapshot.getKey());
-                }
-                Collections.reverse(orderID);
-                myOrderID = orderID;
-
-
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-
 
 
 
@@ -114,27 +87,8 @@ public class AllOrders extends AppCompatActivity {
 
 
 
-        innerDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child("1669918768");
 
-        innerDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-
-                    CartProducts cartProducts = dataSnapshot.getValue(CartProducts.class);
-                    list2.add(cartProducts);
-                }
-
-                allOrdersAdapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
 

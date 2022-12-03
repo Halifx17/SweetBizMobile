@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="2dp"
     app:cardElevation="5dp"
@@ -9,13 +9,14 @@
     app:contentPadding="5dp">
 
     <LinearLayout
-        android:id="@+id/allOrdersLinearLayout"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
         <ImageView
-            android:id="@+id/allOrdersInnerProductImage"
+            android:id="@+id/allOrdersProductImage"
             android:layout_width="120dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
@@ -31,7 +32,7 @@
 
 
             <TextView
-                android:id="@+id/allOrdersInnerProductName"
+                android:id="@+id/allOrdersProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Item Name"
@@ -41,51 +42,62 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
-                android:id="@+id/allOrdersInnerProductDescription"
+                android:id="@+id/allOrdersProductDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:layout_marginTop="2dp"
-                android:layout_below="@id/allOrdersInnerProductName"
+                android:layout_below="@id/allOrdersProductName"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/allOrdersInnerProductPrice"
+                android:id="@+id/allOrdersProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Price"
-                android:layout_below="@id/allOrdersInnerProductDescription"
+                android:layout_below="@id/allOrdersProductDescription"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/qtyTextview"
+                android:id="@+id/Qty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/allOrdersInnerProductAmount"
-                android:layout_toStartOf="@+id/allOrdersInnerProductAmount"
-                android:text="Qty"/>
-
+                android:layout_toStartOf="@+id/allOrdersProductAmount"
+                android:layout_alignBaseline="@+id/allOrdersProductPrice"
+                android:text="Qty."/>
 
 
             <TextView
-                android:id="@+id/allOrdersInnerProductAmount"
+                android:id="@+id/allOrdersProductAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/allOrdersInnerProductPrice"
                 android:layout_alignParentRight="true"
-                android:text="0"
-                android:layout_marginHorizontal="10dp"/>
+                android:layout_alignBaseline="@+id/allOrdersProductPrice"
+                android:layout_marginHorizontal="10dp"
+                android:text="0"/>
 
+            <!--
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/deleteBtn"
+                            app:icon="@drawable/ic_delete"
+                            app:iconPadding="0dp"
+                            android:minHeight="0dp"
+                            android:minWidth="0dp"
+                            app:iconGravity="textStart"
+                            android:layout_width="30dp"
+                            android:layout_height="40dp"
+                            android:backgroundTint="@color/red"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginEnd="5dp"/>
+                 -->
 
         </RelativeLayout>
-
     </LinearLayout>
-
 
 
 </androidx.cardview.widget.CardView>

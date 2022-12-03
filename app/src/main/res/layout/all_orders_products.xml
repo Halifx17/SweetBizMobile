@@ -13,31 +13,42 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/innerRecyclerAllOrders"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/myLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp">
+
+         <TextView
+             android:id="@+id/allOrdersOrderNumber"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="00000000"
+             android:layout_alignParentLeft="true"
+             android:layout_alignBaseline="@+id/totalItemsTextView"
+             android:layout_marginHorizontal="20dp"/>
+
         <TextView
             android:id="@+id/totalItemsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total"
-            android:layout_toStartOf="@+id/allOrdersTotalItems"
-            />
+            android:layout_toStartOf="@+id/allOrdersTotalItems" />
 
             <TextView
                 android:id="@+id/allOrdersTotalItems"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:layout_toStartOf="@+id/allOrdersTotalPrice"
-                />
+                android:layout_toStartOf="@+id/allOrdersTotalPrice" />
 
         <TextView
             android:id="@+id/allOrdersTotalPrice"
@@ -45,8 +56,8 @@
             android:layout_height="wrap_content"
             android:text="0"
             android:layout_alignParentRight="true"
-            android:layout_marginHorizontal="10dp"
-            />
+            android:layout_marginHorizontal="10dp" />
+
         </RelativeLayout>
 
     </LinearLayout>
