@@ -34,7 +34,6 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
     FirebaseUser user;
     FirebaseAuth mAuth;
     String userID;
-    int numberOfItems;
     Long count;
 
 
@@ -61,7 +60,7 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
 
 
         Orders orders = list.get(position);
-        holder.allOrdersTotalPrice.setText(Integer.toString(orders.getRevenue()));
+        holder.allOrdersTotalPrice.setText("\u20B1"+Integer.toString(orders.getRevenue()));
         holder.orderNumber.setText(Long.toString(orders.getOrderno()));
 
         Log.d("OrderNumber", holder.orderNumber.getText().toString());
@@ -92,9 +91,12 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
                         Glide.with(context).load(cartProducts.getImageURL()).into(imageView);
                 holder.linearLayout.addView(myView);
 
-                numberOfItems++;
+
 
                 }
+
+
+                holder.amount.setText("("+Long.toString(count)+" item(s))");
 
 
 
@@ -156,7 +158,7 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
 
             allOrdersTotalPrice = itemView.findViewById(R.id.allOrdersTotalPrice);
             price = itemView.findViewById(R.id.allOrdersTotalPrice);
-            amount = itemView.findViewById(R.id.allOrdersProductAmount);
+            amount = itemView.findViewById(R.id.allOrdersTotalItems);
             orderNumber = itemView.findViewById(R.id.allOrdersOrderNumber);
             linearLayout = itemView.findViewById(R.id.myLinearLayout);
 

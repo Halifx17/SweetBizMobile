@@ -32,13 +32,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     FirebaseAuth mAuth;
     String userID;
 
-
-
-
     Context context;
     ArrayList<CartProducts> list;
     QuantityListener quantityListener;
-
 
     ArrayList<String> itemNumbers = new ArrayList<>();
     ArrayList<CheckBox> checkBoxes = new ArrayList<>();
@@ -56,10 +52,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public CartAdapter.CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.cart_products,parent,false);
-
-
-
-
 
         return new CartViewHolder(view);
     }
@@ -147,7 +139,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
                 int myAmountAdd;
-
                 int myAmount = Integer.parseInt(holder.amount.getText().toString());
                 Long myQuantity = Long.parseLong(holder.quantity.getText().toString());
                 String myPrice = holder.price.getText().toString();
@@ -158,9 +149,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 if(myAmount <= myQuantity){
 
                     myAmountAdd = myAmount + 1;
-
-
-
                     databaseReference.child("amount").setValue(myAmountAdd);
                     databaseReference.child("totalPrice").setValue(myAmountAdd*myPriceLong);
                     Intent intent = new Intent(context,Home.class);
@@ -168,8 +156,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     intent.putExtra("fragment",fragment);
                     context.startActivity(intent);
                     activity.overridePendingTransition(0,0);
-
-
                     Log.d("MessageAdd", String.valueOf(myAmountAdd));
 
                 }else{
@@ -192,9 +178,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                                 .toString());
 
                 int myAmountMinus;
-
                 int myAmount = Integer.parseInt(holder.amount.getText().toString());
-                Long myQuantity = Long.parseLong(holder.quantity.getText().toString());
                 String myPrice = holder.price.getText().toString();
                 String myPriceNumberOnly = myPrice.replaceAll("[^0-9.]","");
                 Long myPriceLong = Long.parseLong(myPriceNumberOnly);
@@ -208,7 +192,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     Intent intent = new Intent(context,Home.class);
                     String fragment = "cartFragmentRefresh";
                     intent.putExtra("fragment",fragment);
-
                     context.startActivity(intent);
                     activity.overridePendingTransition(0,0);
                     Log.d("MessageMinus", String.valueOf(myAmountMinus));

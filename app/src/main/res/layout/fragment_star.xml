@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/SweetBiz"
+            android:textStyle="bold"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +39,7 @@
             android:layout_marginTop="20dp"
             android:text="Hot Today"
             android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -56,7 +58,7 @@
             android:layout_height="180dp"
             app:layout_constraintStart_toStartOf="@+id/MostPopularCake"
             app:layout_constraintTop_toBottomOf="@+id/MostPopularCake"
-            tools:src="@tools:sample/avatars" />
+            />
 
         <TextView
             android:id="@+id/discount"
@@ -81,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Categories"
+            android:textStyle="bold"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="@+id/discountDetails"
             app:layout_constraintTop_toBottomOf="@+id/discountDetails" />
@@ -101,7 +104,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cakes"
                 android:layout_width="60dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -118,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:scaleType="centerCrop"
-                        tools:src="@tools:sample/avatars"></ImageView>
+                        android:src="@drawable/cakeicon"></ImageView>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -126,7 +129,7 @@
                         android:fontFamily="@font/antic"
                         android:gravity="center"
                         android:text="Cakes"
-                        android:textSize="20sp">
+                        android:textSize="16sp">
 
                     </TextView>
 
@@ -137,7 +140,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/drinks"
                 android:layout_width="60dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -154,15 +157,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:scaleType="centerCrop"
-                        tools:src="@tools:sample/avatars"></ImageView>
+                        android:src="@drawable/drinksicon"></ImageView>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:fontFamily="@font/antic"
                         android:gravity="center"
-                        android:text="Cakes"
-                        android:textSize="20sp">
+                        android:text="Drinks"
+                        android:textSize="16sp">
 
                     </TextView>
 
@@ -173,7 +176,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cupcakes"
                 android:layout_width="60dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -190,15 +193,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:scaleType="centerCrop"
-                        tools:src="@tools:sample/avatars"></ImageView>
+                        android:src="@drawable/cupcakesicons"></ImageView>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:fontFamily="@font/antic"
                         android:gravity="center"
-                        android:text="Cakes"
-                        android:textSize="20sp">
+                        android:text="Cupcakes"
+                        android:textSize="15sp">
 
                     </TextView>
 
@@ -209,7 +212,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/pizza"
                 android:layout_width="60dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -226,15 +229,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:scaleType="centerCrop"
-                        tools:src="@tools:sample/avatars"></ImageView>
+                        android:src="@drawable/pizzaicon"></ImageView>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:fontFamily="@font/antic"
                         android:gravity="center"
-                        android:text="Cakes"
-                        android:textSize="20sp">
+                        android:text="Pizza"
+                        android:textSize="16sp">
 
                     </TextView>
 
@@ -245,7 +248,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/donuts"
                 android:layout_width="60dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -262,15 +265,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:scaleType="centerCrop"
-                        tools:src="@tools:sample/avatars"></ImageView>
+                        android:src="@drawable/donutsicon"></ImageView>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:fontFamily="@font/antic"
                         android:gravity="center"
-                        android:text="Cakes"
-                        android:textSize="20sp">
+                        android:text="Donuts"
+                        android:textSize="16sp">
 
                     </TextView>
 
@@ -287,6 +290,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Most Popular Products"
+            android:textStyle="bold"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -330,7 +334,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            tools:src="@tools:sample/avatars"></ImageView>
+                            ></ImageView>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -338,8 +342,9 @@
                             android:fontFamily="@font/antic"
                             android:layout_gravity="bottom"
                             android:gravity="center"
-                            android:text="Cakes"
-                            android:textSize="20sp">
+                            android:text="Awesome Drinks"
+                            android:textSize="20sp"
+                            android:background="@color/white">
 
                         </TextView>
 
@@ -366,7 +371,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:scaleType="centerCrop"
-                            tools:src="@tools:sample/avatars"></ImageView>
+                            ></ImageView>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -374,8 +379,9 @@
                             android:fontFamily="@font/antic"
                             android:layout_gravity="bottom"
                             android:gravity="center"
-                            android:text="Cakes"
-                            android:textSize="20sp">
+                            android:text="Sweet and Yummy"
+                            android:textSize="20sp"
+                            android:background="@color/white">
 
                         </TextView>
 
@@ -402,7 +408,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:scaleType="centerCrop"
-                            tools:src="@tools:sample/avatars"></ImageView>
+                            ></ImageView>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -410,8 +416,9 @@
                             android:fontFamily="@font/antic"
                             android:layout_gravity="bottom"
                             android:gravity="center"
-                            android:text="Cakes"
-                            android:textSize="20sp">
+                            android:text="Custom Cakes"
+                            android:textSize="20sp"
+                            android:background="@color/white">
 
                         </TextView>
 
@@ -434,6 +441,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="25sp"
+            android:textStyle="bold"
             android:text="Special Offers"
             app:layout_constraintStart_toStartOf="@+id/scrollableMostPopularProducts"
             app:layout_constraintTop_toBottomOf="@+id/scrollableMostPopularProducts" />
