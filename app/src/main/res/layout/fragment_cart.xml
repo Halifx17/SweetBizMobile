@@ -46,10 +46,8 @@
 
         </androidx.core.widget.NestedScrollView>
 
-
-
-
     </LinearLayout>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar

@@ -146,7 +146,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 Long myPriceLong = Long.parseLong(myPriceNumberOnly);
 
 
-                if(myAmount <= myQuantity){
+                if(myAmount < myQuantity){
 
                     myAmountAdd = myAmount + 1;
                     databaseReference.child("amount").setValue(myAmountAdd);
@@ -158,9 +158,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     activity.overridePendingTransition(0,0);
                     Log.d("MessageAdd", String.valueOf(myAmountAdd));
 
+
+
+
+
                 }else{
                     Toast.makeText(context,holder.quantity.getText().toString()+" is the maximum amount",Toast.LENGTH_SHORT).show();
                 }
+
+
+
+
 
 
             }
@@ -202,6 +210,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             }
         });
+
+
+        Log.d("TAG", "Loop");
     }
 
     @Override
