@@ -151,11 +151,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     myAmountAdd = myAmount + 1;
                     databaseReference.child("amount").setValue(myAmountAdd);
                     databaseReference.child("totalPrice").setValue(myAmountAdd*myPriceLong);
-                    Intent intent = new Intent(context,Home.class);
-                    String fragment = "cartFragmentRefresh";
-                    intent.putExtra("fragment",fragment);
-                    context.startActivity(intent);
-                    activity.overridePendingTransition(0,0);
                     Log.d("MessageAdd", String.valueOf(myAmountAdd));
 
 
@@ -197,11 +192,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     myAmountMinus = myAmount - 1;
                     databaseReference.child("amount").setValue(myAmountMinus);
                     databaseReference.child("totalPrice").setValue(myAmountMinus*myPriceLong);
-                    Intent intent = new Intent(context,Home.class);
-                    String fragment = "cartFragmentRefresh";
-                    intent.putExtra("fragment",fragment);
-                    context.startActivity(intent);
-                    activity.overridePendingTransition(0,0);
+
                     Log.d("MessageMinus", String.valueOf(myAmountMinus));
                 }else{
                     Toast.makeText(context,"Cannot go below zero",Toast.LENGTH_SHORT).show();
@@ -212,7 +203,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         });
 
 
-        Log.d("TAG", "Loop");
+
     }
 
     @Override

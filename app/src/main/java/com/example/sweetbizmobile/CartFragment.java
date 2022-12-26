@@ -133,6 +133,8 @@ public class CartFragment extends Fragment implements QuantityListener{
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 
 
@@ -227,6 +229,8 @@ public class CartFragment extends Fragment implements QuantityListener{
         selectAllCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
 
 
                 if(selectAllCheckBox.isChecked()){

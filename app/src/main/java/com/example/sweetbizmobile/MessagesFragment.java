@@ -56,6 +56,7 @@ public class MessagesFragment extends Fragment {
     String stringDate;
     Long longDate;
     Long trimLongDate;
+    Long timeSort;
 
     Button sendBtn;
     EditText editMessage;
@@ -137,6 +138,7 @@ public class MessagesFragment extends Fragment {
 
                 }
                 messageListAdapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(list.size() - 1);
             }
 
             @Override
@@ -155,9 +157,12 @@ public class MessagesFragment extends Fragment {
                 stringDate = dateFormat.format(Calendar.getInstance().getTime());
                 longDate = new Date().getTime();
                 trimLongDate = longDate/1000;
+                timeSort = -trimLongDate;
+
 
                 messageTxt = editMessage.getText().toString().trim();
-                Message message = new Message(messageTxt,userID,longDate);
+                Message message = new Message(messageTxt,userID,trimLongDate);
+                MessagesChat messageschat = new MessagesChat(messageTxt,userID,trimLongDate,timeSort);
 
                 chatsDatabaseReference.push().setValue(message).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -180,7 +185,7 @@ public class MessagesFragment extends Fragment {
                     }
                 });
 
-                chatMessagesDatabaseReference.setValue(message).addOnCompleteListener(new OnCompleteListener<Void>() {
+                chatMessagesDatabaseReference.setValue(messageschat).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
