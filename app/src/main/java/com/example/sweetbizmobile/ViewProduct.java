@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ViewProduct extends AppCompatActivity {
 
-    TextView itemName, itemPrice;
+    TextView itemName, itemPrice, itemDescription;
     ImageView itemImage;
     ExtendedFloatingActionButton buyNow, addToCart, cartIcon;
     DatabaseReference databaseReference, cartDatabase;
@@ -45,6 +45,7 @@ public class ViewProduct extends AppCompatActivity {
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
+        String description = intent.getStringExtra("description");
         String imageUrl = intent.getStringExtra("imageUrl");
         String category = intent.getStringExtra("category");
         Long itemNo = intent.getLongExtra("itemNo",0);
@@ -55,6 +56,7 @@ public class ViewProduct extends AppCompatActivity {
         itemName = findViewById(R.id.ItemName);
         itemPrice = findViewById(R.id.ItemPrice);
         itemImage = findViewById(R.id.ItemImage);
+        itemDescription = findViewById(R.id.itemDescription);
 
         buyNow = findViewById(R.id.BuyNow);
         addToCart = findViewById(R.id.AddToCart);
@@ -73,6 +75,7 @@ public class ViewProduct extends AppCompatActivity {
 
         itemName.setText(name);
         itemPrice.setText(Long.toString(price));
+        itemDescription.setText(description);
         Glide.with(this).load(imageUrl).into(itemImage);
 
 

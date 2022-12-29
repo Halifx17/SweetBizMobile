@@ -80,6 +80,7 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> 
             int position = getBindingAdapterPosition();
             Intent intent = new Intent(context,ViewProduct.class);
             intent.putExtra("name",list.get(position).getName());
+            intent.putExtra("description",list.get(position).getDescription());
             intent.putExtra("price",list.get(position).getPrice());
             intent.putExtra("imageUrl",list.get(position).getImageURL());
             intent.putExtra("itemNo",list.get(position).getItemno());

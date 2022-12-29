@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CartFragment">
 
 
@@ -23,17 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Delete" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:fontFamily="@font/antic"
-            android:text="Shopping Cart"
-            android:textSize="40sp"
-            android:paddingTop="5dp"
-            android:gravity="center"
-            android:background="@color/gray" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -65,7 +55,8 @@
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: "
+            android:textColor="@color/red"
+            android:text="Total: ₱"
             android:layout_gravity="center" />
 
         <TextView
@@ -73,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
+            android:textColor="@color/red"
             android:layout_gravity="center" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
@@ -80,13 +72,17 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/checkOutBtn"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
+        android:padding="0dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_gravity="bottom|end"
         android:gravity="center"
         android:text="CheckOut"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="15dp"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red"
+        android:layout_marginEnd="10dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -130,7 +130,7 @@ public class Home extends AppCompatActivity {
                 editor.putString("remember","false");
                 editor.apply();
 
-                Intent intent = new Intent(Home.this, MainActivity.class);
+                Intent intent = new Intent(Home.this, LogIn.class);
                 mAuth.signOut();
                 finish();
                 startActivity(intent);

@@ -2,11 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="2dp"
-    app:cardElevation="5dp"
-    app:cardCornerRadius="5dp"
-    app:contentPadding="5dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -59,7 +55,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Price"
                 android:layout_below="@id/allOrdersProductDescription"
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

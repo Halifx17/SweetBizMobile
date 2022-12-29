@@ -1,19 +1,20 @@
 package com.example.sweetbizmobile;
 
 public class Products {
-    String category, imageURL, name;
+    String category, imageURL, name, description;
     Long itemno, price, quantity;
 
-    public Products(String category, String imageURL, String name, Long itemno, Long price, Long quantity) {
+    public Products() {
+    }
+
+    public Products(String category, String imageURL, String name, String description, Long itemno, Long price, Long quantity) {
         this.category = category;
         this.imageURL = imageURL;
         this.name = name;
+        this.description = description;
         this.itemno = itemno;
         this.price = price;
         this.quantity = quantity;
-    }
-
-    public Products() {
     }
 
     public String getCategory() {
@@ -38,6 +39,14 @@ public class Products {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getItemno() {

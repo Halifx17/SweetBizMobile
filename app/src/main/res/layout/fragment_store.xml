@@ -12,17 +12,6 @@
         android:orientation="vertical"
         android:paddingHorizontal="10dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:fontFamily="@font/antic"
-            android:text="STORE"
-            android:textSize="40sp"
-            android:paddingTop="5dp"
-            android:gravity="center"
-            android:background="@color/gray" />
-
         <RelativeLayout
             android:id="@+id/searchRl"
             android:layout_width="match_parent"

@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="5dp"
     app:cardCornerRadius="5dp"
-    app:contentPadding="5dp">
+    app:contentPadding="5dp"
+    android:layout_margin="8dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -36,6 +37,7 @@
             android:fontFamily="@font/antic"
             android:gravity="left"
             android:text="price"
+            android:textColor="@color/red"
             android:textSize="20sp" />
 
     </LinearLayout>
