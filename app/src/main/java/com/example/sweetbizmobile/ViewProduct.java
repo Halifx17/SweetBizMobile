@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,19 +23,28 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class ViewProduct extends AppCompatActivity {
 
-    TextView itemName, itemPrice, itemDescription;
+    TextView itemName,
+            itemPrice,
+            itemDescription,
+            itemQuantity,
+            textViewTotalQuantity,
+            textViewImageURL,
+            textViewCategory,
+            textViewItemNo,
+            textViewPrice;
     ImageView itemImage;
     ExtendedFloatingActionButton buyNow, addToCart, cartIcon;
     DatabaseReference databaseReference, cartDatabase;
     FirebaseUser user;
     FirebaseAuth mAuth;
-    String userID;
-    int amount = 1;
+    String userID, keys, prodCategory, prodDescription, prodImageURL, prodItemNo, prodName, prodPrice, prodTotalQuantity, prodLastUpdated;
     Long totalPrice;
+    Button addBtn, minusBtn;
 
 
     @Override
@@ -43,20 +54,35 @@ public class ViewProduct extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        String description = intent.getStringExtra("description");
-        String imageUrl = intent.getStringExtra("imageUrl");
-        String category = intent.getStringExtra("category");
-        Long itemNo = intent.getLongExtra("itemNo",0);
-        Long price = intent.getLongExtra("price",0);
-        Long quantity = intent.getLongExtra("quantity",0);
-        totalPrice = price * amount;
+        addBtn = findViewById(R.id.addBtn);
+        minusBtn = findViewById(R.id.minusBtn);
 
+        Intent intent = getIntent();
+        Long itemNo = intent.getLongExtra("itemNo",0);
+
+
+        textViewCategory = findViewById(R.id.textViewCategory);
+        itemDescription = findViewById(R.id.itemDescription);
+        textViewImageURL = findViewById(R.id.textViewimageURL);
+        textViewItemNo = findViewById(R.id.textViewItemNo);
         itemName = findViewById(R.id.ItemName);
+        textViewPrice = findViewById(R.id.textViewPrice);
+        textViewTotalQuantity = findViewById(R.id.totalQuantity);
+
         itemPrice = findViewById(R.id.ItemPrice);
         itemImage = findViewById(R.id.ItemImage);
-        itemDescription = findViewById(R.id.itemDescription);
+        itemQuantity = findViewById(R.id.itemQuantity);
+        itemQuantity.setText("1");
+
+        textViewCategory.setVisibility(View.INVISIBLE);
+        textViewImageURL.setVisibility(View.INVISIBLE);
+        textViewItemNo.setVisibility(View.INVISIBLE);
+        textViewTotalQuantity.setVisibility(View.INVISIBLE);
+
+
+
+
+
 
         buyNow = findViewById(R.id.BuyNow);
         addToCart = findViewById(R.id.AddToCart);
@@ -72,11 +98,60 @@ public class ViewProduct extends AppCompatActivity {
         cartDatabase = FirebaseDatabase.getInstance().getReference("Carts").child(userID).child(itemNoID);
 
 
+        Query userQuery = databaseReference.orderByChild("itemno").equalTo(itemNo);
+        userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 
-        itemName.setText(name);
-        itemPrice.setText(Long.toString(price));
-        itemDescription.setText(description);
-        Glide.with(this).load(imageUrl).into(itemImage);
+                    keys = dataSnapshot.getKey();
+                    Products products = dataSnapshot.getValue(Products.class);
+
+                    prodCategory = products.getCategory();
+                    prodDescription = products.getDescription();
+                    prodImageURL = products.getImageURL();
+                    prodItemNo = Long.toString(products.getItemno());
+                    prodName = products.getName();
+                    prodPrice = Long.toString(products.getPrice());
+                    prodTotalQuantity = Long.toString(products.getQuantity());
+
+
+
+                    textViewCategory.setText(prodCategory);
+                    itemDescription.setText(prodDescription);
+                    textViewImageURL.setText(prodImageURL);
+                    textViewItemNo.setText(prodItemNo);
+
+                    itemName.setText(prodName);
+                    textViewPrice.setText(prodPrice);
+                    textViewTotalQuantity.setText(prodTotalQuantity);
+
+                    itemPrice.setText("\u20B1"+prodPrice+"/Piece");
+                    Glide.with(getApplicationContext()).load(prodImageURL).into(itemImage);
+
+
+                    Log.d("TEST", keys+" "+prodName+" "+prodPrice);
+
+
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
 
 
         cartIcon.setOnClickListener(new View.OnClickListener() {
@@ -90,11 +165,68 @@ public class ViewProduct extends AppCompatActivity {
             }
         });
 
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Long totalQuantity = Long.parseLong(textViewTotalQuantity.getText().toString());
+                Long myQuantity = Long.parseLong(itemQuantity.getText().toString());
+                Long newQuantity;
+
+                if(myQuantity<totalQuantity){
+                    newQuantity = myQuantity + 1;
+                    itemQuantity.setText(Long.toString(newQuantity));
+                }else{
+                    Toast.makeText(getApplicationContext(),textViewTotalQuantity.getText().toString()+" is the maximum amount",Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+            }
+        });
+
+        minusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Long totalQuantity = Long.parseLong(textViewTotalQuantity.getText().toString());
+                Long myQuantity = Long.parseLong(itemQuantity.getText().toString());
+                Long newQuantity;
+
+                if(myQuantity!=1){
+                    newQuantity = myQuantity - 1;
+                    itemQuantity.setText(Long.toString(newQuantity));
+                }else{
+                    Toast.makeText(getApplicationContext(),"Cannot go below one",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+
+
+
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                CartProducts cartProducts = new CartProducts(category,imageUrl,name,itemNo,price,quantity,totalPrice,amount);
+                String name = itemName.getText().toString();
+                String category = textViewCategory.getText().toString();
+                String imageUrl = textViewImageURL.getText().toString();
+                Long price = Long.parseLong(textViewPrice.getText().toString());
+                Long totalQuantity = Long.parseLong(textViewTotalQuantity.getText().toString());
+                Integer quantity = Integer.parseInt(itemQuantity.getText().toString());
+                totalPrice = price * quantity;
+
+
+
+
+                CartProducts cartProducts = new CartProducts(category,imageUrl,name,itemNo,price,totalQuantity,totalPrice,quantity);
+
+
+
 
                 cartDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -125,6 +257,10 @@ public class ViewProduct extends AppCompatActivity {
 
                     }
                 });
+
+
+
+
 
 
             }

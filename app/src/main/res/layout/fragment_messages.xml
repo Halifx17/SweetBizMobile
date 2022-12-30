@@ -13,7 +13,7 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
-
+<!--
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_gchannel"
             android:layout_width="match_parent"
@@ -22,6 +22,17 @@
             app:popupTheme="@style/Theme.AppCompat.Light">
 
         </androidx.appcompat.widget.Toolbar>
+-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SweetBiz Chat"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView

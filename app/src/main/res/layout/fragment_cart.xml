@@ -7,6 +7,11 @@
     tools:context=".CartFragment">
 
 
+
+
+
+
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,11 +24,31 @@
         android:paddingHorizontal="10dp"
         android:paddingBottom="55dp">
 
-        <Button
-            android:id="@+id/deleteBtn"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delete" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/shoppingCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shopping Cart"
+                android:textSize="32sp"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deleteBtn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_delete"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconTint="@color/black"
+                android:backgroundTint="@color/white"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

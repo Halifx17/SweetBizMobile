@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,12 +24,15 @@ import com.google.firebase.database.DatabaseReference;
  */
 public class ProfileFragment extends Fragment {
 
+    private static final String DEFAULT_PFP = "https://firebasestorage.googleapis.com/v0/b/sweetbiz-89782.appspot.com/o/Images%2Fdefault_pfp.png?alt=media&token=";
+
     FirebaseUser user;
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
 
     TextView profileEmail;
     MaterialButton viewAllOrdersButton;
+    ImageView profilePicture;
 
     String userID;
 
@@ -84,8 +89,11 @@ public class ProfileFragment extends Fragment {
 
         profileEmail = view.findViewById(R.id.profileEmail);
         viewAllOrdersButton = view.findViewById(R.id.viewAllOrdersBtn);
+        profilePicture = view.findViewById(R.id.profilePic);
 
         profileEmail.setText(user.getEmail());
+        Glide.with(this).load(DEFAULT_PFP).into(profilePicture);
+
 
 
         viewAllOrdersButton.setOnClickListener(new View.OnClickListener() {

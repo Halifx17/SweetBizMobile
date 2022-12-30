@@ -170,11 +170,19 @@ public class CartFragment extends Fragment implements QuantityListener{
                 Log.d("CheckOutID", arrayID.toString());
                 Log.d("CheckOutPrice", arrayPrice.toString());
 
-                Intent intent = new Intent(getContext(),CheckOut.class);
-                intent.putExtra("checkOutID",arrayID);
-                intent.putExtra("checkOutPrice",arrayPrice);
-                intent.putExtra("checkOutNames",arrayNames);
-                getContext().startActivity(intent);
+                if(arrayID.size() == 0 && arrayPrice.size() == 0 && arrayNames.size() == 0 && arrayAmount.size() == 0){
+
+                    Toast.makeText(getContext(),"Please Select Items",Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Intent intent = new Intent(getContext(), CheckOut.class);
+                    intent.putExtra("checkOutID", arrayID);
+                    intent.putExtra("checkOutPrice", arrayPrice);
+                    intent.putExtra("checkOutNames", arrayNames);
+                    intent.putExtra("checkOutAmount", arrayAmount);
+                    getContext().startActivity(intent);
+                }
 
 
             }

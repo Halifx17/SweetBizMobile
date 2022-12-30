@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_bg_resized"
     tools:context=".LogIn">
 
     <TextView
         android:id="@+id/LogIn_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="160dp"
         android:fontFamily="@font/antic"
         android:text="@string/SweetBiz"
         android:textSize="35sp"

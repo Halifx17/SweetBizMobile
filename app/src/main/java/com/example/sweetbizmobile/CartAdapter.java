@@ -74,12 +74,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         CartProducts cartProducts = list.get(position);
         holder.name.setText(cartProducts.getName());
+
         holder.price.setText("\u20B1"+Long.toString(cartProducts.getPrice())+"/piece");
         holder.amount.setText(Integer.toString(cartProducts.getAmount()));
         holder.quantity.setText(Long.toString(cartProducts.getQuantity()));
         holder.itemNo.setText(Long.toString(cartProducts.getItemno()));
         holder.totalPrice.setText(Long.toString(cartProducts.getTotalPrice()));
         Glide.with(context).load(cartProducts.getImageURL()).into(holder.image);
+
+
 
         /*
         arrayList0.add(holder.itemNo.getText().toString());
@@ -93,6 +96,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
 
 
 
@@ -161,6 +166,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     Toast.makeText(context,holder.quantity.getText().toString()+" is the maximum amount",Toast.LENGTH_SHORT).show();
                 }
 
+                Intent intent = new Intent(context,Home.class);
+                String fragment = "cartFragmentRefresh";
+                intent.putExtra("fragment",fragment);
+                context.startActivity(intent);
+                activity.overridePendingTransition(0,0);
+
 
 
 
@@ -188,15 +199,22 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
 
-                if(myAmount != 0){
+                if(myAmount != 1){
                     myAmountMinus = myAmount - 1;
                     databaseReference.child("amount").setValue(myAmountMinus);
                     databaseReference.child("totalPrice").setValue(myAmountMinus*myPriceLong);
 
                     Log.d("MessageMinus", String.valueOf(myAmountMinus));
                 }else{
-                    Toast.makeText(context,"Cannot go below zero",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Cannot go below one",Toast.LENGTH_SHORT).show();
                 }
+
+
+                Intent intent = new Intent(context,Home.class);
+                String fragment = "cartFragmentRefresh";
+                intent.putExtra("fragment",fragment);
+                context.startActivity(intent);
+                activity.overridePendingTransition(0,0);
 
 
             }
@@ -214,7 +232,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public class CartViewHolder extends RecyclerView.ViewHolder{
 
 
-        TextView name, price, amount, quantity, itemNo, totalPrice;
+        TextView name, price, amount, quantity, itemNo, totalPrice, description;
         ImageView image;
         CheckBox checkBox;
         Button addBtn, minusBtn;
@@ -225,6 +243,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             checkBox = itemView.findViewById(R.id.cartProductCheckBox);
             name = itemView.findViewById(R.id.cartProductName);
+            description = itemView.findViewById(R.id.cartProductDescription);
             price = itemView.findViewById(R.id.cartProductPrice);
             image = itemView.findViewById(R.id.cartProductImage);
             amount = itemView.findViewById(R.id.cartProductAmount);

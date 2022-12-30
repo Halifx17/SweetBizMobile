@@ -33,6 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="28sp"
             android:text="ItemName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ItemImage" />
@@ -51,9 +53,95 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:textSize="24sp"
             android:text="ItemPrice"
+            android:textColor="@color/red"
             app:layout_constraintStart_toStartOf="@+id/itemDescription"
             app:layout_constraintTop_toBottomOf="@+id/itemDescription" />
+
+
+        <TextView
+            android:id="@+id/totalQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/addBtn"
+            android:text="totalQuantity"
+            app:layout_constraintStart_toEndOf="@+id/textViewimageURL"
+            app:layout_constraintTop_toTopOf="@+id/textViewimageURL" />
+
+        <TextView
+            android:id="@+id/textViewimageURL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/addBtn"
+            android:text="imageURL"
+            app:layout_constraintStart_toEndOf="@+id/SquiddyKitchen"
+            app:layout_constraintTop_toTopOf="@+id/SquiddyKitchen" />
+
+        <TextView
+            android:id="@+id/textViewCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/addBtn"
+            android:text="Category"
+            app:layout_constraintStart_toEndOf="@+id/totalQuantity"
+            app:layout_constraintTop_toTopOf="@+id/totalQuantity" />
+
+        <TextView
+            android:id="@+id/textViewItemNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/addBtn"
+            android:text="Item Number"
+            app:layout_constraintStart_toEndOf="@+id/Address"
+            app:layout_constraintTop_toTopOf="@+id/Address" />
+
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/addBtn"
+            android:text="Price"
+            app:layout_constraintStart_toEndOf="@+id/contactNumber"
+            app:layout_constraintTop_toTopOf="@+id/contactNumber" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/minusBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="32dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            app:icon="@drawable/ic_minus"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/addBtn"
+            app:layout_constraintTop_toTopOf="@+id/addBtn" />
+
+        <TextView
+            android:id="@+id/itemQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toStartOf="@+id/addBtn"
+            android:text="1"
+            app:layout_constraintBottom_toBottomOf="@+id/addBtn"
+            app:layout_constraintEnd_toStartOf="@+id/addBtn"
+            app:layout_constraintStart_toEndOf="@+id/minusBtn"
+            app:layout_constraintTop_toTopOf="@+id/addBtn" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="24dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ItemPrice" />
 
         <View
             android:id="@+id/divider"
@@ -86,6 +174,14 @@
         app:layout_constraintStart_toStartOf="@+id/SquiddyKitchen"
         app:layout_constraintTop_toBottomOf="@+id/SquiddyKitchen" />
 
+        <TextView
+            android:id="@+id/contactNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="09xxxxxxxxx / 09xxxxxxxxxx"
+            app:layout_constraintStart_toStartOf="@+id/Address"
+            app:layout_constraintTop_toBottomOf="@+id/Address" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

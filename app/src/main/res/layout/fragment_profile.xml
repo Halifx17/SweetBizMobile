@@ -6,30 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
-
-    <TextView
-        android:id="@+id/profileEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="profileEmail"
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/pfp_banner_rs">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pfpCardView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:cardCornerRadius="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_centerHorizontal="true"
+            >
+
+            <ImageView
+                android:id="@+id/profilePic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/viewAllOrdersBtn"
+        <TextView
+            android:id="@+id/profileEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pfpCardView"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
+            android:text="profileEmail"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="View All Orders"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/viewAllOrdersBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="View All Orders"
+            android:textAlignment="textEnd"
+            app:icon="@drawable/chevron_right_24"
+            app:iconGravity="textEnd"
+            app:iconTint="@color/black"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/favorites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="Favorites"
+            android:textAlignment="textStart"
+            app:icon="@drawable/chevron_right_24"
+            app:iconGravity="end"
+            app:iconTint="@color/black"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textAlignment="textStart"
+            app:icon="@drawable/chevron_right_24"
+            app:iconGravity="end"
+            app:iconTint="@color/black"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
@@ -38,7 +40,8 @@ public class CheckOut extends AppCompatActivity{
     ArrayList<CartProducts> list;
     DatabaseReference databaseReference, fromPathDatabaseReference,
             toPathDatabaseReference, deletePathDatabaseReference,
-            orderAdminDatabaseReference, orderUserDatabaseReference;
+            orderAdminDatabaseReference, orderUserDatabaseReference,
+            updateQuantityDatabaseReference;
     CheckOutAdapter checkOutAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -49,7 +52,7 @@ public class CheckOut extends AppCompatActivity{
 
     ExtendedFloatingActionButton placeOrderBtn;
 
-    String stringCheckOutID, stringCheckOutPrice;
+    String stringCheckOutID, stringCheckOutPrice, myKey;
     TextView checkOutTotalPrice;
 
     DateFormat dateFormat;
@@ -60,6 +63,7 @@ public class CheckOut extends AppCompatActivity{
     ArrayList<String> checkOutID = new ArrayList<>();
     ArrayList<String> checkOutPrice = new ArrayList<>();
     ArrayList<String> checkOutNames = new ArrayList<>();
+    ArrayList<String> checkOutAmount = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +74,11 @@ public class CheckOut extends AppCompatActivity{
         checkOutID = bundle.getStringArrayList("checkOutID");
         checkOutPrice = bundle.getStringArrayList("checkOutPrice");
         checkOutNames = bundle.getStringArrayList("checkOutNames");
+        checkOutAmount = bundle.getStringArrayList("checkOutAmount");
         Log.d("MyArrayID", checkOutID.toString());
         Log.d("MyArrayPrice", checkOutPrice.toString());
         Log.d("MyArrayNames", checkOutNames.toString());
+        Log.d("MyArrayAmount", checkOutAmount.toString());
 
         checkOutTotalPrice = findViewById(R.id.checkOutProductTotalPrice);
 
@@ -142,6 +148,7 @@ public class CheckOut extends AppCompatActivity{
 
                 copyRecord();
                 placeOrder();
+                updateQuantity();
                 Intent intent = new Intent(getApplicationContext(),OrderPlaced.class);
                 getApplication().startActivity(intent);
 
@@ -283,6 +290,56 @@ public class CheckOut extends AppCompatActivity{
 
             }
         });
+
+    }
+
+    private void updateQuantity(){
+
+        updateQuantityDatabaseReference = FirebaseDatabase.getInstance().getReference("FinishedProducts");
+        int listSize = checkOutID.size()-1;
+        for(int i = listSize;i>=0;i--){
+            String myID = checkOutID.get(i);
+            Long orderedQuantity = Long.parseLong(checkOutAmount.get(i));
+
+
+
+            Query userQuery = updateQuantityDatabaseReference.orderByChild("itemno").equalTo(Integer.parseInt(myID));
+            userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+
+                        myKey = dataSnapshot.getKey();
+                        Products products = dataSnapshot.getValue(Products.class);
+                        Long stockQuantity = products.getQuantity();
+                        Long finalQuantity = stockQuantity - orderedQuantity;
+                        updateQuantityDatabaseReference.child(myKey).child("quantity").setValue(finalQuantity);
+
+
+
+
+
+
+
+
+
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+
+
+
+
 
     }
 

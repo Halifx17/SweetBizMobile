@@ -1,8 +1,10 @@
 package com.example.sweetbizmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +49,7 @@ public class StoreFragment extends Fragment {
     DatabaseReference databaseReference;
     StarAdapter starAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
+    CardView cakes, drinks, cupcakes, pizza, donuts;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -93,6 +96,12 @@ public class StoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_store,container,false);
+
+        cakes = view.findViewById(R.id.cakes);
+        drinks = view.findViewById(R.id.drinks);
+        cupcakes = view.findViewById(R.id.cupcakes);
+        pizza = view.findViewById(R.id.pizza);
+        donuts = view.findViewById(R.id.donuts);
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         searchEt = view.findViewById(R.id.searchEt);
@@ -172,6 +181,47 @@ public class StoreFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
                 loadStoreData();
 
+            }
+        });
+
+        cakes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getContext(),Cakes.class);
+                startActivity(intent);
+            }
+        });
+
+        drinks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Drinks.class);
+                startActivity(intent);
+            }
+        });
+
+        cupcakes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Cupcakes.class);
+                startActivity(intent);
+            }
+        });
+
+        pizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Pizza.class);
+                startActivity(intent);
+            }
+        });
+
+        donuts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Donuts.class);
+                startActivity(intent);
             }
         });
 

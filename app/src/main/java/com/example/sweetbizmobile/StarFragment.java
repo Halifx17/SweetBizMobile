@@ -41,7 +41,7 @@ public class StarFragment extends Fragment {
     DatabaseReference databaseReference;
     StarAdapter starAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
-    CardView cakes, drinks, cupcakes, pizza, donuts;
+    CardView cakes, drinks, cupcakes, pizza, donuts, awesomeDrinks, sweetAndYummy, customCakes;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -95,6 +95,9 @@ public class StarFragment extends Fragment {
         cupcakes = view.findViewById(R.id.cupcakes);
         pizza = view.findViewById(R.id.pizza);
         donuts = view.findViewById(R.id.donuts);
+        awesomeDrinks = view.findViewById(R.id.awesomeDrinks);
+        sweetAndYummy = view.findViewById(R.id.sweetAndYummy);
+        customCakes = view.findViewById(R.id.customCakes);
 
         recyclerView = view.findViewById(R.id.starRecyclerView);
         databaseReference = FirebaseDatabase.getInstance().getReference("FinishedProducts");
@@ -104,13 +107,46 @@ public class StarFragment extends Fragment {
         recyclerView.setAdapter(starAdapter);
 
 
+
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+
+
+
+                Products products = dataSnapshot.getValue(Products.class);
+                list.add(products);
+
+                }
+                RearrangeItems();
+                starAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                swipeRefreshLayout.setRefreshing(false);
+                RearrangeItems();
+
+
+            }
+        });
+
         cakes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(getContext(),Cakes.class);
                 startActivity(intent);
-
             }
         });
 
@@ -146,33 +182,23 @@ public class StarFragment extends Fragment {
             }
         });
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        awesomeDrinks.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-
-
-                Products products = dataSnapshot.getValue(Products.class);
-                list.add(products);
-
-                }
-                RearrangeItems();
-                starAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onClick(View view) {
 
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        sweetAndYummy.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onRefresh() {
+            public void onClick(View view) {
 
-                swipeRefreshLayout.setRefreshing(false);
-                RearrangeItems();
+            }
+        });
 
+        customCakes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,6 +46,7 @@ public class MessagesFragment extends Fragment {
     DatabaseReference databaseReference, chatsDatabaseReference, chatMessagesDatabaseReference;
     MessageListAdapter messageListAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
+
 
     FirebaseUser user;
     FirebaseAuth mAuth;
@@ -106,6 +108,8 @@ public class MessagesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_messages, container, false);
+
+
 
         mAuth = FirebaseAuth.getInstance();
 
