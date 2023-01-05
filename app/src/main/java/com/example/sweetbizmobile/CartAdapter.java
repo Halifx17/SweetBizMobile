@@ -2,7 +2,9 @@ package com.example.sweetbizmobile;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -74,13 +77,39 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         CartProducts cartProducts = list.get(position);
         holder.name.setText(cartProducts.getName());
-
+        holder.description.setText(cartProducts.getDescription());
         holder.price.setText("\u20B1"+Long.toString(cartProducts.getPrice())+"/piece");
         holder.amount.setText(Integer.toString(cartProducts.getAmount()));
         holder.quantity.setText(Long.toString(cartProducts.getQuantity()));
         holder.itemNo.setText(Long.toString(cartProducts.getItemno()));
         holder.totalPrice.setText(Long.toString(cartProducts.getTotalPrice()));
         Glide.with(context).load(cartProducts.getImageURL()).into(holder.image);
+
+
+
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Long positionItemNo = Long.valueOf(holder.itemNo.getText().toString());
+                Intent intent = new Intent(context,ViewProduct.class);
+                intent.putExtra("itemNo",positionItemNo);
+                Log.d("Item Number",Long.toString(positionItemNo));
+                context.startActivity(intent);
+            }
+        });
+
+        holder.description.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Long positionItemNo = Long.valueOf(holder.itemNo.getText().toString());
+                Intent intent = new Intent(context,ViewProduct.class);
+                intent.putExtra("itemNo",positionItemNo);
+                Log.d("Item Number",Long.toString(positionItemNo));
+                context.startActivity(intent);
+            }
+        });
+
+
 
 
 

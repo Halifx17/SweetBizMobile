@@ -28,7 +28,19 @@
             android:fontFamily="@font/antic"
             android:gravity="left"
             android:text="Cakes"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/starProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/antic"
+            android:gravity="left"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Description"
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/starProductPrice"

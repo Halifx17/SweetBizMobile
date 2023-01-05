@@ -37,15 +37,17 @@
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"/>
 
+
             <TextView
                 android:id="@+id/allOrdersProductDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="description"
                 android:layout_marginTop="2dp"
                 android:layout_below="@id/allOrdersProductName"
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView

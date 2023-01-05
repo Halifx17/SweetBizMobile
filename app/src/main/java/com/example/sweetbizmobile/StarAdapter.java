@@ -44,6 +44,7 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> 
         Products products = list.get(position);
         holder.name.setText(products.getName());
         holder.price.setText("\u20B1"+Long.toString(products.getPrice())+"/piece");
+        holder.description.setText(products.getDescription());
         Glide.with(context).load(products.getImageURL()).into(holder.image);
 
     }
@@ -63,7 +64,7 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView name, price;
+        TextView name, price, description;
         ImageView image;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -72,6 +73,7 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> 
             image = itemView.findViewById(R.id.starProductImg);
             name = itemView.findViewById(R.id.starProductName);
             price = itemView.findViewById(R.id.starProductPrice);
+            description = itemView.findViewById(R.id.starProductDescription);
             itemView.setOnClickListener(this);
         }
 
@@ -79,13 +81,7 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.MyViewHolder> 
         public void onClick(View view) {
             int position = getBindingAdapterPosition();
             Intent intent = new Intent(context,ViewProduct.class);
-            intent.putExtra("name",list.get(position).getName());
-            intent.putExtra("description",list.get(position).getDescription());
-            intent.putExtra("price",list.get(position).getPrice());
-            intent.putExtra("imageUrl",list.get(position).getImageURL());
             intent.putExtra("itemNo",list.get(position).getItemno());
-            intent.putExtra("quantity",list.get(position).getQuantity());
-            intent.putExtra("category",list.get(position).getCategory());
             context.startActivity(intent);
 
         }

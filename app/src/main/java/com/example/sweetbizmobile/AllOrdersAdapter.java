@@ -61,11 +61,13 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
 
         Orders orders = list.get(position);
         holder.allOrdersTotalPrice.setText("\u20B1"+Integer.toString(orders.getRevenue()));
-        holder.orderNumber.setText(Long.toString(orders.getOrderno()));
+        holder.allOrderNumber.setText("Order No.: "+Long.toString(orders.getOrderno()));
+        holder.allOrderDate.setText(orders.getDate());
 
-        Log.d("OrderNumber", holder.orderNumber.getText().toString());
+        Log.d("OrderNumber", holder.allOrderNumber.getText().toString());
 
-        myDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child(holder.orderNumber.getText().toString());
+        String dbRef = Long.toString(orders.getOrderno());
+        myDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child(dbRef);
 
         myDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -84,10 +86,12 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
                 TextView title = myView.findViewById(R.id.allOrdersProductName);
                 TextView price = myView.findViewById(R.id.allOrdersProductPrice);
                 TextView amount = myView.findViewById(R.id.allOrdersProductAmount);
+                TextView description = myView.findViewById(R.id.allOrdersProductDescription);
                 ImageView imageView = myView.findViewById(R.id.allOrdersProductImage);
                 title.setText(cartProducts.getName());
                 price.setText("\u20B1"+Long.toString(cartProducts.getPrice())+"/piece");
                 amount.setText(Integer.toString(cartProducts.getAmount()));
+                description.setText(cartProducts.getDescription());
                         Glide.with(context).load(cartProducts.getImageURL()).into(imageView);
                 holder.linearLayout.addView(myView);
 
@@ -149,7 +153,7 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
 
     public class AllOrdersViewholder extends RecyclerView.ViewHolder {
 
-        TextView allOrdersTotalPrice, name, price, amount, orderNumber;
+        TextView allOrdersTotalPrice, name, price, amount, allOrderNumber, allOrderDate;
         LinearLayout linearLayout;
 
 
@@ -158,8 +162,9 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
 
             allOrdersTotalPrice = itemView.findViewById(R.id.allOrdersTotalPrice);
             price = itemView.findViewById(R.id.allOrdersTotalPrice);
+            allOrderDate = itemView.findViewById(R.id.allOrdersOrderDate);
             amount = itemView.findViewById(R.id.allOrdersTotalItems);
-            orderNumber = itemView.findViewById(R.id.allOrdersOrderNumber);
+            allOrderNumber = itemView.findViewById(R.id.allOrdersOrderNumber);
             linearLayout = itemView.findViewById(R.id.myLinearLayout);
 
 

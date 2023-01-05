@@ -39,6 +39,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.CheckO
 
         CartProducts cartProducts = list.get(position);
         holder.name.setText(cartProducts.getName());
+        holder.description.setText(cartProducts.getDescription());
         holder.price.setText("\u20B1"+Long.toString(cartProducts.getPrice())+"/piece");
         holder.amount.setText(Integer.toString(cartProducts.getAmount()));
         Glide.with(context).load(cartProducts.getImageURL()).into(holder.image);
@@ -55,13 +56,14 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.CheckO
 
     public class CheckOutViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name, price, amount, quantity, itemNo, totalPrice;
+        TextView name, price, amount, quantity, itemNo, totalPrice, description;
         ImageView image;
 
         public CheckOutViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.checkOutProductName);
+            description = itemView.findViewById(R.id.checkOutProductDescription);
             price = itemView.findViewById(R.id.checkOutProductPrice);
             amount = itemView.findViewById(R.id.checkOutProductAmount);
             image = itemView.findViewById(R.id.checkOutProductImage);

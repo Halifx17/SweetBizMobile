@@ -215,6 +215,7 @@ public class ViewProduct extends AppCompatActivity {
                 String name = itemName.getText().toString();
                 String category = textViewCategory.getText().toString();
                 String imageUrl = textViewImageURL.getText().toString();
+                String description = itemDescription.getText().toString();
                 Long price = Long.parseLong(textViewPrice.getText().toString());
                 Long totalQuantity = Long.parseLong(textViewTotalQuantity.getText().toString());
                 Integer quantity = Integer.parseInt(itemQuantity.getText().toString());
@@ -223,7 +224,7 @@ public class ViewProduct extends AppCompatActivity {
 
 
 
-                CartProducts cartProducts = new CartProducts(category,imageUrl,name,itemNo,price,totalQuantity,totalPrice,quantity);
+                CartProducts cartProducts = new CartProducts(category,imageUrl,name,description,itemNo,price,totalQuantity,totalPrice,quantity);
 
 
 
