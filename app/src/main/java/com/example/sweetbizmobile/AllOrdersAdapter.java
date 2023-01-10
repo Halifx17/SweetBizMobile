@@ -3,6 +3,7 @@ package com.example.sweetbizmobile;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllOrdersViewholder> {
 
@@ -63,6 +66,26 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
         holder.allOrdersTotalPrice.setText("\u20B1"+Integer.toString(orders.getRevenue()));
         holder.allOrderNumber.setText("Order No.: "+Long.toString(orders.getOrderno()));
         holder.allOrderDate.setText(orders.getDate());
+        holder.status.setText(orders.getStatus().toUpperCase(Locale.ROOT));
+
+
+
+
+
+        if(holder.status.getText().toString().equals("PENDING")){
+            holder.status.setTextColor(ContextCompat.getColor(context, R.color.yellow));
+        }else if(holder.status.getText().toString().equals("PAID")){
+            holder.status.setTextColor(ContextCompat.getColor(context, R.color.lightGreen));
+        }else if(holder.status.getText().toString().equals("CANCELLED")){
+            holder.status.setTextColor(ContextCompat.getColor(context, R.color.lightRed));
+        }else{
+            holder.status.setTextColor(ContextCompat.getColor(context, R.color.black));
+        }
+
+        holder.linearLayout.removeAllViews();
+
+
+
 
         Log.d("OrderNumber", holder.allOrderNumber.getText().toString());
 
@@ -153,7 +176,7 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
 
     public class AllOrdersViewholder extends RecyclerView.ViewHolder {
 
-        TextView allOrdersTotalPrice, name, price, amount, allOrderNumber, allOrderDate;
+        TextView allOrdersTotalPrice, name, price, amount, status, allOrderNumber, allOrderDate;
         LinearLayout linearLayout;
 
 
@@ -164,6 +187,7 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
             price = itemView.findViewById(R.id.allOrdersTotalPrice);
             allOrderDate = itemView.findViewById(R.id.allOrdersOrderDate);
             amount = itemView.findViewById(R.id.allOrdersTotalItems);
+            status = itemView.findViewById(R.id.totalItemsStatus);
             allOrderNumber = itemView.findViewById(R.id.allOrdersOrderNumber);
             linearLayout = itemView.findViewById(R.id.myLinearLayout);
 

@@ -71,6 +71,7 @@ public class AllOrders extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 
                     Orders orders = dataSnapshot.getValue(Orders.class);

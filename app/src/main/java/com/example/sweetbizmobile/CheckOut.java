@@ -187,6 +187,7 @@ public class CheckOut extends AppCompatActivity{
         String finalProductNames = productNames.substring(1,productNames.length()-1);
 
         Orders orders = new Orders(userName,stringDate,finalProductNames,"pending",trimLongDate,finalTotalSumOfPrice);
+        OrdersAdmin ordersAdmin = new OrdersAdmin(userName,stringDate,finalProductNames,"pending",userID,trimLongDate,finalTotalSumOfPrice);
 
         orderUserDatabaseReference.setValue(orders).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -201,7 +202,7 @@ public class CheckOut extends AppCompatActivity{
             }
         });
 
-        orderAdminDatabaseReference.setValue(orders).addOnCompleteListener(new OnCompleteListener<Void>() {
+        orderAdminDatabaseReference.setValue(ordersAdmin).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
