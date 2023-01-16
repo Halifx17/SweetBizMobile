@@ -141,16 +141,16 @@ public class CheckOut extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                dateFormat = new SimpleDateFormat("d-MMM-yyyy h:mm a");
-                stringDate = dateFormat.format(Calendar.getInstance().getTime());
-                longDate = new Date().getTime();
-                trimLongDate = longDate/1000;
 
-                copyRecord();
+
                 placeOrder();
+                copyRecord();
                 updateQuantity();
+
                 Intent intent = new Intent(getApplicationContext(),OrderPlaced.class);
                 getApplication().startActivity(intent);
+
+
 
             }
         });
@@ -166,6 +166,11 @@ public class CheckOut extends AppCompatActivity{
     }
 
     private void placeOrder() {
+
+        dateFormat = new SimpleDateFormat("d-MMM-yyyy h:mm a");
+        stringDate = dateFormat.format(Calendar.getInstance().getTime());
+        longDate = new Date().getTime();
+        trimLongDate = longDate/1000;
 
         int size = checkOutPrice.size();
         int [] totalPriceArray = new int [size];
@@ -187,7 +192,8 @@ public class CheckOut extends AppCompatActivity{
         String finalProductNames = productNames.substring(1,productNames.length()-1);
 
         Orders orders = new Orders(userName,stringDate,finalProductNames,"pending",trimLongDate,finalTotalSumOfPrice);
-        OrdersAdmin ordersAdmin = new OrdersAdmin(userName,stringDate,finalProductNames,"pending",userID,trimLongDate,finalTotalSumOfPrice);
+
+        OrdersAdmin ordersAdmin = new OrdersAdmin(userName,stringDate,"none",finalProductNames,"pending",userID,stringDate,"none","none",trimLongDate,finalTotalSumOfPrice);
 
         orderUserDatabaseReference.setValue(orders).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -241,6 +247,11 @@ public class CheckOut extends AppCompatActivity{
     }
 
     private void copyRecord() {
+
+        dateFormat = new SimpleDateFormat("d-MMM-yyyy h:mm a");
+        stringDate = dateFormat.format(Calendar.getInstance().getTime());
+        longDate = new Date().getTime();
+        trimLongDate = longDate/1000;
 
         fromPathDatabaseReference = FirebaseDatabase.getInstance().getReference("Carts").child(userID);
         toPathDatabaseReference = FirebaseDatabase.getInstance().getReference("OrderProducts").child(Long.toString(trimLongDate));

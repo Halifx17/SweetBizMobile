@@ -80,7 +80,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/LogInButton"
-        android:layout_width="130dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/login_button"
@@ -90,12 +90,12 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         app:errorTextColor="@color/red"
-        app:layout_constraintStart_toStartOf="@+id/checkBox"
+        app:layout_constraintStart_toStartOf="@+id/EditText_Password"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/RegisterButton"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:background="@drawable/login_button"
         android:fontFamily="@font/antic"
@@ -105,8 +105,6 @@
         android:textSize="20sp"
         app:errorTextColor="@color/red"
         app:layout_constraintEnd_toEndOf="@+id/EditText_Password"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/LogInButton"
         app:layout_constraintTop_toTopOf="@+id/LogInButton" />
 
     <TextView

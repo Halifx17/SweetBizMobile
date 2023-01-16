@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -97,10 +98,11 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
     private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
         TextView messageText, timeText, nameText;
-        ImageView profileImage;
+        ImageView profileImage, chatImage;
 
         ReceivedMessageHolder(View itemView) {
             super(itemView);
+            chatImage = itemView.findViewById(R.id.chatImageOther);
             messageText = (TextView) itemView.findViewById(R.id.text_gchat_message_other);
             timeText = (TextView) itemView.findViewById(R.id.text_gchat_timestamp_other);
             nameText = (TextView) itemView.findViewById(R.id.text_gchat_user_other);
@@ -108,7 +110,12 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         }
 
         void bind(Message message) {
-            messageText.setText(message.getMessage());
+
+            if(message.getMessage().contains("https://firebasestorage.googleapis.com/v0/b/sweetbiz-89782.appspot.com/o/Images%2F")){
+                Glide.with(context).load(message.getMessage()).into(chatImage);
+            }else{
+                messageText.setText(message.getMessage());
+            }
 
             // Format the stored timestamp into a readable String using method.
 
@@ -123,16 +130,21 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
     private class SentMessageHolder extends RecyclerView.ViewHolder {
         TextView messageText, timeText;
+        ImageView chatImage;
 
         SentMessageHolder(View itemView) {
             super(itemView);
-
+            chatImage = itemView.findViewById(R.id.chatImageMe);
             messageText = (TextView) itemView.findViewById(R.id.text_gchat_message_me);
             timeText = (TextView) itemView.findViewById(R.id.text_gchat_timestamp_me);
         }
 
         void bind(Message message) {
-            messageText.setText(message.getMessage());
+            if(message.getMessage().contains("https://firebasestorage.googleapis.com/v0/b/sweetbiz-89782.appspot.com/o/Images%2F")){
+                Glide.with(context).load(message.getMessage()).into(chatImage);
+            }else{
+                messageText.setText(message.getMessage());
+            }
 
             // Format the stored timestamp into a readable String using method.
            timeText.setText(Long.toString(message.getCreatedAt()));
