@@ -28,7 +28,7 @@ public class LogIn extends AppCompatActivity {
     EditText editEmail, editPassword;
     TextInputLayout editTextEmail, editTextPassword;
     CheckBox remember;
-    String ifChecked;
+    String ifChecked = "false";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

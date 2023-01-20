@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingBottom="10dp">
+
 
     <TextView
         android:id="@+id/text_gchat_date_other"
@@ -49,13 +50,23 @@
         android:id="@+id/card_gchat_message_other"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#eef1f6"
+
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true"
         app:layout_constraintStart_toEndOf="@+id/image_gchat_profile_other"
         app:layout_constraintTop_toBottomOf="@+id/text_gchat_user_other">
+
+        <ImageView
+            android:id="@+id/chatImageOther"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="@+id/card_gchat_message_other"
+            app:layout_constraintTop_toBottomOf="@+id/text_gchat_user_other"
+            tools:srcCompat="@tools:sample/avatars" />
+
 
 
         <LinearLayout
@@ -91,7 +102,6 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/card_gchat_message_other"
         app:layout_constraintStart_toEndOf="@+id/card_gchat_message_other" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

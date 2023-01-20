@@ -51,6 +51,8 @@ public class AllOrders extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         userID = user.getUid();
 
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayoutAllOrders);
+
         recyclerView = findViewById(R.id.recyclerAllOrders);
         list = new ArrayList<>();
         list2 = new ArrayList<>();
@@ -88,7 +90,14 @@ public class AllOrders extends AppCompatActivity {
 
 
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
 
+                swipeRefreshLayout.setRefreshing(false);
+
+            }
+        });
 
 
 
@@ -97,4 +106,6 @@ public class AllOrders extends AppCompatActivity {
 
 
     }
+
+
 }

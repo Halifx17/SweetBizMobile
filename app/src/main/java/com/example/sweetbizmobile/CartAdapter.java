@@ -133,13 +133,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 if(holder.checkBox.isChecked()){
                     itemNumbers.add(holder.itemNo.getText().toString());
                     totalPrices.add(holder.totalPrice.getText().toString());
-                    itemNames.add(holder.name.getText().toString()+" x "+holder.amount.getText().toString());
+                    itemNames.add(holder.name.getText().toString()+"("+holder.amount.getText().toString()+")");
                     itemAmount.add(holder.amount.getText().toString());
 
                 }else{
                     itemNumbers.remove(holder.itemNo.getText().toString());
                     totalPrices.remove(holder.totalPrice.getText().toString());
-                    itemNames.remove(holder.name.getText().toString()+" x "+holder.amount.getText().toString());
+                    itemNames.remove(holder.name.getText().toString()+"("+holder.amount.getText().toString()+")");
                     itemAmount.remove(holder.amount.getText().toString());
 
 

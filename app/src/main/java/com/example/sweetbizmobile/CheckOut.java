@@ -148,7 +148,7 @@ public class CheckOut extends AppCompatActivity{
                 updateQuantity();
 
                 Intent intent = new Intent(getApplicationContext(),OrderPlaced.class);
-                getApplication().startActivity(intent);
+                startActivity(intent);
 
 
 
