@@ -2,19 +2,19 @@ package com.example.sweetbizmobile;
 
 public class Orders {
 
-    String customername, date, product, status;
-    Long orderno;
+    String customername, product, status;
+    Long orderno, date;
     int revenue;
 
     public Orders() {
     }
 
-    public Orders(String customername, String date, String product, String status, Long orderno, int revenue) {
+    public Orders(String customername, String product, String status, Long orderno, Long date, int revenue) {
         this.customername = customername;
-        this.date = date;
         this.product = product;
         this.status = status;
         this.orderno = orderno;
+        this.date = date;
         this.revenue = revenue;
     }
 
@@ -24,14 +24,6 @@ public class Orders {
 
     public void setCustomername(String customername) {
         this.customername = customername;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getProduct() {
@@ -56,6 +48,14 @@ public class Orders {
 
     public void setOrderno(Long orderno) {
         this.orderno = orderno;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
     }
 
     public int getRevenue() {

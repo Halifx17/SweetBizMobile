@@ -191,9 +191,13 @@ public class CheckOut extends AppCompatActivity{
         String productNames = checkOutNames.toString();
         String finalProductNames = productNames.substring(1,productNames.length()-1);
 
-        Orders orders = new Orders(userName,stringDate,finalProductNames,"pending",trimLongDate,finalTotalSumOfPrice);
+       // Orders orders = new Orders(userName,stringDate,finalProductNames,"pending",trimLongDate,finalTotalSumOfPrice);
 
-        OrdersAdmin ordersAdmin = new OrdersAdmin(userName,stringDate,"none",finalProductNames,"pending",userID,stringDate,"none","none",trimLongDate,finalTotalSumOfPrice);
+        Orders orders = new Orders(userName,finalProductNames,"pending",trimLongDate,trimLongDate,finalTotalSumOfPrice);
+
+       // OrdersAdmin ordersAdmin = new OrdersAdmin(userName,stringDate,"none",finalProductNames,"pending",userID,stringDate,"none","none",trimLongDate,finalTotalSumOfPrice);
+
+        OrdersAdmin ordersAdmin = new OrdersAdmin(userName,"none",finalProductNames,"pending",userID,"none","none","none",trimLongDate,trimLongDate,finalTotalSumOfPrice);
 
         orderUserDatabaseReference.setValue(orders).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

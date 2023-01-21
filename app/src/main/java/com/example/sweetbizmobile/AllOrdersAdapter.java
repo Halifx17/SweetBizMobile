@@ -28,7 +28,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllOrdersViewholder> {
@@ -60,12 +63,16 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
     @Override
     public void onBindViewHolder(@NonNull AllOrdersAdapter.AllOrdersViewholder holder, int position) {
 
+        DateFormat dateFormat;
+        String stringDate;
 
 
         Orders orders = list.get(position);
         holder.allOrdersTotalPrice.setText("\u20B1"+Integer.toString(orders.getRevenue()));
         holder.allOrderNumber.setText("Order No.: "+Long.toString(orders.getOrderno()));
-        holder.allOrderDate.setText(orders.getDate());
+        dateFormat = new SimpleDateFormat("d-MMM-yyyy h:mm a");
+        stringDate = dateFormat.format(orders.getDate() * 1000);
+        holder.allOrderDate.setText(stringDate);
         holder.status.setText(orders.getStatus().toUpperCase(Locale.ROOT));
 
 
@@ -115,7 +122,7 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.AllO
                 price.setText("\u20B1"+Long.toString(cartProducts.getPrice())+"/piece");
                 amount.setText(Integer.toString(cartProducts.getAmount()));
                 description.setText(cartProducts.getDescription());
-                        Glide.with(context).load(cartProducts.getImageURL()).into(imageView);
+                        Glide.with(context.getApplicationContext()).load(cartProducts.getImageURL()).into(imageView);
                 holder.linearLayout.addView(myView);
 
 

@@ -2,16 +2,15 @@ package com.example.sweetbizmobile;
 
 public class OrdersAdmin {
 
-    String customername, date, dateproccessed, product, status, userID, lastupdated, or, receivedby;
-    Long orderno;
+    String customername, dateproccessed, product, status, userID, lastupdated, or, receivedby;
+    Long orderno, date;
     int revenue;
 
     public OrdersAdmin() {
     }
 
-    public OrdersAdmin(String customername, String date, String dateproccessed, String product, String status, String userID, String lastupdated, String or, String receivedby, Long orderno, int revenue) {
+    public OrdersAdmin(String customername, String dateproccessed, String product, String status, String userID, String lastupdated, String or, String receivedby, Long orderno, Long date, int revenue) {
         this.customername = customername;
-        this.date = date;
         this.dateproccessed = dateproccessed;
         this.product = product;
         this.status = status;
@@ -20,6 +19,7 @@ public class OrdersAdmin {
         this.or = or;
         this.receivedby = receivedby;
         this.orderno = orderno;
+        this.date = date;
         this.revenue = revenue;
     }
 
@@ -29,14 +29,6 @@ public class OrdersAdmin {
 
     public void setCustomername(String customername) {
         this.customername = customername;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getDateproccessed() {
@@ -101,6 +93,14 @@ public class OrdersAdmin {
 
     public void setOrderno(Long orderno) {
         this.orderno = orderno;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
     }
 
     public int getRevenue() {
