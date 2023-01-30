@@ -2,17 +2,18 @@ package com.example.sweetbizmobile;
 
 public class User {
 
-    public String username, email, password, role;
+    public String username, email, password, role, profilePic;
 
-    public User(String username, String email, String password, String role) {
+    public User() {
+
+    }
+
+    public User(String username, String email, String password, String role, String profilePic) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
-    }
-
-    public User(){
-
+        this.profilePic = profilePic;
     }
 
     public String getUsername() {
@@ -46,4 +47,14 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
 }
+
+

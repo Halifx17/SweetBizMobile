@@ -24,13 +24,12 @@
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="50dp"
                 android:fontFamily="@font/antic"
-                android:text="All Orders"
-                android:textSize="40sp"
-                android:paddingTop="5dp"
                 android:gravity="center"
-                android:background="@color/gray" />
+                android:paddingTop="5dp"
+                android:text="All Orders"
+                android:textSize="40sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerAllOrders"

@@ -36,9 +36,10 @@ public class ViewProduct extends AppCompatActivity {
             textViewImageURL,
             textViewCategory,
             textViewItemNo,
-            textViewPrice;
+            textViewPrice,
+            textViewItemSize;
     ImageView itemImage;
-    ExtendedFloatingActionButton buyNow, addToCart, cartIcon;
+    ExtendedFloatingActionButton buyNowBtn, addToCart, cartIcon, reserveBtn;
     DatabaseReference databaseReference, cartDatabase;
     FirebaseUser user;
     FirebaseAuth mAuth;
@@ -68,6 +69,7 @@ public class ViewProduct extends AppCompatActivity {
         itemName = findViewById(R.id.ItemName);
         textViewPrice = findViewById(R.id.textViewPrice);
         textViewTotalQuantity = findViewById(R.id.totalQuantity);
+        textViewItemSize = findViewById(R.id.itemSize);
 
         itemPrice = findViewById(R.id.ItemPrice);
         itemImage = findViewById(R.id.ItemImage);
@@ -84,7 +86,8 @@ public class ViewProduct extends AppCompatActivity {
 
 
 
-        buyNow = findViewById(R.id.BuyNow);
+        buyNowBtn = findViewById(R.id.BuyNow);
+        reserveBtn = findViewById(R.id.Reserve);
         addToCart = findViewById(R.id.AddToCart);
         cartIcon = findViewById(R.id.cartIcon);
 
@@ -115,6 +118,17 @@ public class ViewProduct extends AppCompatActivity {
                     prodPrice = Long.toString(products.getPrice());
                     prodTotalQuantity = Long.toString(products.getQuantity());
 
+                    if(products.getCategory().equals("Cakes")){
+                        addToCart.setVisibility(View.GONE);
+                        itemPrice.setText("\u20B1"+prodPrice+"+/Piece");
+                        reserveBtn.setVisibility(View.GONE);
+                    }else{
+                        buyNowBtn.setVisibility(View.GONE);
+                        reserveBtn.setVisibility(View.GONE);
+                        textViewItemSize.setVisibility(View.GONE);
+                        itemPrice.setText("\u20B1"+prodPrice+"/Piece");
+                    }
+
 
 
                     textViewCategory.setText(prodCategory);
@@ -126,7 +140,7 @@ public class ViewProduct extends AppCompatActivity {
                     textViewPrice.setText(prodPrice);
                     textViewTotalQuantity.setText(prodTotalQuantity);
 
-                    itemPrice.setText("\u20B1"+prodPrice+"/Piece");
+
                     Glide.with(getApplicationContext()).load(prodImageURL).into(itemImage);
 
 
@@ -263,6 +277,46 @@ public class ViewProduct extends AppCompatActivity {
 
 
 
+
+            }
+        });
+
+        buyNowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String name = itemName.getText().toString();
+                String category = textViewCategory.getText().toString();
+                String imageUrl = textViewImageURL.getText().toString();
+                String description = itemDescription.getText().toString();
+                Long price = Long.parseLong(textViewPrice.getText().toString());
+                Long totalQuantity = Long.parseLong(textViewTotalQuantity.getText().toString());
+                Integer quantity = Integer.parseInt(itemQuantity.getText().toString());
+                totalPrice = price * quantity;
+
+
+                Intent intent = new Intent(ViewProduct.this,CustomizeCake.class);
+                intent.putExtra("cakeName",name);
+                intent.putExtra("cakeCategory",category);
+                intent.putExtra("cakeImageUrl",imageUrl);
+                intent.putExtra("cakeDescription",description);
+
+                intent.putExtra("cakePrice",price);
+                intent.putExtra("cakeQuantity",quantity);
+                intent.putExtra("cakeTotalQuantity",totalQuantity);
+                intent.putExtra("cakeTotalPrice",totalPrice);
+
+
+                startActivity(intent);
+
+
+
+            }
+        });
+
+        reserveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });

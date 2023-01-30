@@ -23,6 +23,7 @@ public class Registration extends AppCompatActivity {
     FirebaseAuth mAuth;
     TextInputLayout editTextUsername, editTextEmail, editTextPassword;
     EditText editUsername, editEmail, editPassword;
+    private static final String DEFAULT_PROFILE_PIC = "https://firebasestorage.googleapis.com/v0/b/sweetbiz-89782.appspot.com/o/Images%2Fdefault_pfp.png?alt=media&token";
 
 
     @Override
@@ -45,11 +46,13 @@ public class Registration extends AppCompatActivity {
 
     public void registerFirebase(View view) {
 
-        String username, email, password;
+        String username, email, password, profilePic;
 
         username = editUsername.getText().toString().trim();
         email = editEmail.getText().toString().trim();
         password = editPassword.getText().toString().trim();
+        profilePic = DEFAULT_PROFILE_PIC;
+
 
 
         if (username.isEmpty() && email.isEmpty() && password.isEmpty()) {
@@ -78,7 +81,7 @@ public class Registration extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        User user = new User(username, email, password,"user");
+                        User user = new User(username, email, password,"user",profilePic);
 
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

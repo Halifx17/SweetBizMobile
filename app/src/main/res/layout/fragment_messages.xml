@@ -32,6 +32,42 @@
             android:textColor="@color/white"
             android:layout_gravity="center"/>
 
+        <TextView
+            android:id="@+id/chatUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="userName"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/chatUserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="userEmail"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/chatUserRole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="userRole"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/chatUserProfilePic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="userProfilePic"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

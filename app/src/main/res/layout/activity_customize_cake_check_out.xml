@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomizeCakeCheckOut">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="55dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:fontFamily="@font/antic"
+                android:text="Check Out"
+                android:textSize="40sp"
+                android:paddingTop="5dp"
+                android:gravity="center" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="100dp">
+
+                    <ImageView
+                        android:id="@+id/cccoImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="@+id/cccoCakeName"
+                        app:layout_constraintStart_toStartOf="@+id/cccoCakeName"
+                        app:layout_constraintTop_toBottomOf="@+id/cccoCakeName"
+                        tools:src="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="Name:"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cccoCakeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/antic"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/textView6"
+                        app:layout_constraintStart_toStartOf="@+id/textView6"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/antic"
+                        android:text="Size:"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toStartOf="@+id/cccoImage"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cccoImage" />
+
+                    <TextView
+                        android:id="@+id/cccoCakeSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView11"
+                        app:layout_constraintStart_toStartOf="@+id/textView11"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="="
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cccoCakeSize"
+                        app:layout_constraintEnd_toEndOf="@+id/cccoImage"
+                        app:layout_constraintStart_toStartOf="@+id/cccoImage"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/antic"
+                        android:text="Icing:"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView11"
+                        app:layout_constraintStart_toStartOf="@+id/textView11"
+                        app:layout_constraintTop_toBottomOf="@+id/cccoCakeSize" />
+
+                    <TextView
+                        android:id="@+id/cccoCakeIcing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView17"
+                        app:layout_constraintStart_toStartOf="@+id/textView17"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="₱"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cccoImage"
+                        app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+                    <TextView
+                        android:id="@+id/cccoCakeSizePrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                        app:layout_constraintStart_toEndOf="@+id/textView14"
+                        app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+                    <TextView
+                        android:id="@+id/textView179"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="="
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cccoCakeIcing"
+                        app:layout_constraintEnd_toEndOf="@+id/textView16"
+                        app:layout_constraintStart_toStartOf="@+id/textView16"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                    <TextView
+                        android:id="@+id/textView144"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="₱"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView179"
+                        app:layout_constraintStart_toStartOf="@+id/textView14"
+                        app:layout_constraintTop_toTopOf="@+id/textView179" />
+
+                    <TextView
+                        android:id="@+id/cccoCakeIcingPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView144"
+                        app:layout_constraintStart_toEndOf="@+id/textView144"
+                        app:layout_constraintTop_toTopOf="@+id/textView144" />
+
+                    <TextView
+                        android:id="@+id/textView1794"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/antic"
+                        android:text="Decorations:"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView17"
+                        app:layout_constraintStart_toStartOf="@+id/textView17"
+                        app:layout_constraintTop_toBottomOf="@+id/cccoCakeIcing" />
+
+                    <TextView
+                        android:id="@+id/cccoCakeDecorations"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView1794"
+                        app:layout_constraintStart_toStartOf="@+id/textView1794"
+                        app:layout_constraintTop_toBottomOf="@+id/textView1794" />
+
+                    <TextView
+                        android:id="@+id/textView1759"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="="
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cccoCakeDecorations"
+                        app:layout_constraintEnd_toEndOf="@+id/textView179"
+                        app:layout_constraintStart_toStartOf="@+id/textView179"
+                        app:layout_constraintTop_toBottomOf="@+id/textView1794" />
+
+                    <TextView
+                        android:id="@+id/textView9144"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="₱"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView1759"
+                        app:layout_constraintStart_toStartOf="@+id/textView144"
+                        app:layout_constraintTop_toTopOf="@+id/textView1759" />
+
+                    <TextView
+                        android:id="@+id/cccoCakeDecorationsPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView9144"
+                        app:layout_constraintStart_toEndOf="@+id/textView9144"
+                        app:layout_constraintTop_toTopOf="@+id/textView9144" />
+
+                    <TextView
+                        android:id="@+id/textView16794"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:fontFamily="@font/antic"
+                        android:text="Subtotal:"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView1794"
+                        app:layout_constraintStart_toStartOf="@+id/textView1794"
+                        app:layout_constraintTop_toBottomOf="@+id/cccoCakeDecorations" />
+
+                    <TextView
+                        android:id="@+id/textView15759"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="="
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView16794"
+                        app:layout_constraintEnd_toEndOf="@+id/textView1759"
+                        app:layout_constraintStart_toStartOf="@+id/textView1759"
+                        app:layout_constraintTop_toTopOf="@+id/textView16794" />
+
+                    <TextView
+                        android:id="@+id/textView94144"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="₱"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView15759"
+                        app:layout_constraintStart_toStartOf="@+id/textView9144"
+                        app:layout_constraintTop_toTopOf="@+id/textView15759" />
+
+                    <TextView
+                        android:id="@+id/cccoSubTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView94144"
+                        app:layout_constraintStart_toEndOf="@+id/textView94144"
+                        app:layout_constraintTop_toTopOf="@+id/textView94144" />
+
+                    <TextView
+                        android:id="@+id/textView165794"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/antic"
+                        android:text="Quantity"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView16794"
+                        app:layout_constraintStart_toStartOf="@+id/textView16794"
+                        app:layout_constraintTop_toBottomOf="@+id/textView16794" />
+
+                    <TextView
+                        android:id="@+id/textView156759"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="X"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView165794"
+                        app:layout_constraintEnd_toEndOf="@+id/textView15759"
+                        app:layout_constraintStart_toStartOf="@+id/textView15759"
+                        app:layout_constraintTop_toTopOf="@+id/textView165794" />
+
+                    <TextView
+                        android:id="@+id/cccoQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView156759"
+                        app:layout_constraintEnd_toEndOf="@+id/cccoSubTotal"
+                        app:layout_constraintStart_toStartOf="@+id/textView94144"
+                        app:layout_constraintTop_toTopOf="@+id/textView156759" />
+
+                    <TextView
+                        android:id="@+id/textView16574494"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:fontFamily="@font/antic"
+                        android:text="TOTAL:"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView165794"
+                        app:layout_constraintStart_toStartOf="@+id/textView165794"
+                        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView156759" />
+
+                    <TextView
+                        android:id="@+id/textView1956759"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="="
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView16574494"
+                        app:layout_constraintEnd_toEndOf="@+id/textView156759"
+                        app:layout_constraintStart_toStartOf="@+id/textView156759"
+                        app:layout_constraintTop_toTopOf="@+id/textView16574494" />
+
+                    <TextView
+                        android:id="@+id/textView947144"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="₱"
+                        android:textColor="@color/red"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView1956759"
+                        app:layout_constraintStart_toStartOf="@+id/textView94144"
+                        app:layout_constraintTop_toTopOf="@+id/textView1956759" />
+
+
+                    <TextView
+                        android:id="@+id/cccoTotalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/antic"
+                        android:text="0"
+                        android:textColor="@color/red"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView947144"
+                        app:layout_constraintStart_toEndOf="@+id/textView947144"
+                        app:layout_constraintTop_toTopOf="@+id/textView947144" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
+        android:id="@+id/cccotermsAndConditions"
+        android:padding="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:text="PLEASE ACCEPT OUR TERMS AND CONDITIONS"
+        android:textSize="10sp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
+        android:layout_marginBottom="60dp" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_anchorGravity="center">
+
+        <CheckBox
+            android:id="@+id/cccoCheckBoxTermsAndConditions"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:padding="0dp"
+            android:gravity="bottom"
+            android:layout_marginStart="30dp"
+            android:clickable="false"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="65dp"/>
+
+
+        <TextView
+            android:id="@+id/customizedCakeCheckOutTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/red"
+            android:text="0"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/black"
+            android:text="Total:"/>
+
+
+
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
+        android:id="@+id/cccoPlaceOrderBtn"
+        android:padding="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom|start"
+        android:gravity="center"
+        android:text="PLACE ORDER"
+        android:textSize="12sp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
+        android:layout_marginBottom="15dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

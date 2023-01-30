@@ -2,17 +2,19 @@ package com.example.sweetbizmobile;
 
 public class MessagesChat {
 
-    String message;
-    String sender;
-    long createdAt;
-    long timeSort;
+    String message, sender, senderName, senderProfilePic, lastSender;
+    long createdAt, timeSort;
+
 
     public MessagesChat() {
     }
 
-    public MessagesChat(String message, String sender, long createdAt, long timeSort) {
+    public MessagesChat(String message, String sender, String senderName, String senderProfilePic, String lastSender, long createdAt, long timeSort) {
         this.message = message;
         this.sender = sender;
+        this.senderName = senderName;
+        this.senderProfilePic = senderProfilePic;
+        this.lastSender = lastSender;
         this.createdAt = createdAt;
         this.timeSort = timeSort;
     }
@@ -31,6 +33,30 @@ public class MessagesChat {
 
     public void setSender(String sender) {
         this.sender = sender;
+    }
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public String getSenderProfilePic() {
+        return senderProfilePic;
+    }
+
+    public void setSenderProfilePic(String senderProfilePic) {
+        this.senderProfilePic = senderProfilePic;
+    }
+
+    public String getLastSender() {
+        return lastSender;
+    }
+
+    public void setLastSender(String lastSender) {
+        this.lastSender = lastSender;
     }
 
     public long getCreatedAt() {

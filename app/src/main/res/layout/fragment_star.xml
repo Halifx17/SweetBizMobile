@@ -111,7 +111,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cakes"
                 android:layout_width="60dp"
-                android:layout_height="95dp"
+                android:layout_height="105dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -126,7 +126,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="80dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/cakeicon"></ImageView>
 
@@ -147,7 +147,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/drinks"
                 android:layout_width="60dp"
-                android:layout_height="95dp"
+                android:layout_height="105dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -162,7 +162,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="80dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/drinksicon"></ImageView>
 
@@ -181,9 +181,9 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cupcakes"
+                android:id="@+id/pizza"
                 android:layout_width="60dp"
-                android:layout_height="95dp"
+                android:layout_height="105dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -199,6 +199,42 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/customcake_icon_resized"></ImageView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/antic"
+                        android:gravity="center"
+                        android:text="Custom Cakes"
+                        android:textSize="14sp">
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cupcakes"
+                android:layout_width="60dp"
+                android:layout_height="105dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/cupcakesicons"></ImageView>
 
@@ -216,46 +252,12 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/pizza"
-                android:layout_width="60dp"
-                android:layout_height="95dp"
-                android:layout_margin="10dp"
-                android:background="@color/white"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/pizzaicon"></ImageView>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:fontFamily="@font/antic"
-                        android:gravity="center"
-                        android:text="Pizza"
-                        android:textSize="16sp">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/donuts"
                 android:layout_width="60dp"
-                android:layout_height="95dp"
+                android:layout_height="105dp"
                 android:layout_margin="10dp"
                 android:background="@color/white"
                 android:clickable="true"
@@ -270,7 +272,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="80dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/donutsicon"></ImageView>
 

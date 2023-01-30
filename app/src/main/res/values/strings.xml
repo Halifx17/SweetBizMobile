@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">SweetBizMobile</string>
+    <string name="select">Select Item</string>
     <string name="SweetBiz">SweetBiz</string>
     <string name="Username">Username</string>
     <string name="Email">Email</string>

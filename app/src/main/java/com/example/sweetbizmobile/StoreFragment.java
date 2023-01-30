@@ -212,7 +212,7 @@ public class StoreFragment extends Fragment {
         pizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(),Pizza.class);
+                Intent intent = new Intent(getContext(), CustomCakes.class);
                 startActivity(intent);
             }
         });

@@ -8,8 +8,9 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/swipeRefreshLayout">
+        android:layout_height="wrap_content"
+        android:id="@+id/swipeRefreshLayout"
+        android:paddingBottom="52dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,30 +22,56 @@
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="50dp"
                 android:fontFamily="@font/antic"
                 android:text="Check Out"
                 android:textSize="40sp"
                 android:paddingTop="5dp"
                 android:gravity="center"
-                android:background="@color/gray" />
+                />
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                >
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerCheckOut"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
+
             </androidx.core.widget.NestedScrollView>
 
 
 
 
+
+
+
+
+
+
         </LinearLayout>
+
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
+        android:id="@+id/termsAndConditions"
+        android:padding="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:text="PLEASE ACCEPT OUR TERMS AND CONDITIONS"
+        android:textSize="10sp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
+        android:layout_marginBottom="60dp" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -53,21 +80,40 @@
         android:layout_gravity="bottom"
         app:layout_anchorGravity="center">
 
-        <TextView
-            android:id="@+id/total"
+        <CheckBox
+            android:id="@+id/checkBoxTermsAndConditions"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total: ₱"
-            android:textColor="@color/red"
-            android:layout_gravity="center" />
+            android:layout_height="40dp"
+            android:padding="0dp"
+            android:gravity="bottom"
+            android:layout_marginStart="30dp"
+            android:clickable="false"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="65dp"/>
+
 
         <TextView
             android:id="@+id/checkOutProductTotalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:layout_gravity="end|bottom"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/red"
-            android:layout_gravity="center" />
+            android:text="0"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/black"
+            android:text="Total:"/>
+
+
+
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -79,15 +125,15 @@
         android:padding="0dp"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|start"
         android:gravity="center"
         android:text="PLACE ORDER"
         android:textSize="12sp"
+        android:layout_marginStart="35dp"
         android:textColor="@color/white"
         android:backgroundTint="@color/red"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginBottom="15dp" />
 
 
 

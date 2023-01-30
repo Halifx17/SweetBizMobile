@@ -27,6 +27,8 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     FirebaseAuth mAuth;
     String userID;
 
+    private static final String DEFAULT_OTHER_PROFILE_IMAGE = "https://firebasestorage.googleapis.com/v0/b/sweetbiz-89782.appspot.com/o/Images%2Fsquiddy_kitchen_splash_cropped.jpg?alt=media&token";
+
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
     private static final int VIEW_TYPE_MESSAGE_IMAGE_SENT = 3;
@@ -84,6 +86,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
                 ReceivedMessageHolder receivedMessageHolder = (ReceivedMessageHolder) holder;
                 receivedMessageHolder.messageText.setText(message.getMessage());
                 receivedMessageHolder.nameText.setText("SweetBiz");
+                Glide.with(context).load(DEFAULT_OTHER_PROFILE_IMAGE).into(receivedMessageHolder.profileImage);
                 String timeMessageReceived = df.format(message.getCreatedAt()*1000);
                 receivedMessageHolder.timeText.setText(timeMessageReceived);
                 break;
@@ -96,6 +99,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             case VIEW_TYPE_MESSAGE_IMAGE_RECEIVED:
                 ReceivedMessageImageHolder receivedMessageImageHolder = (ReceivedMessageImageHolder) holder;
                 Glide.with(context).load(message.getMessage()).into(receivedMessageImageHolder.chatImage);
+                Glide.with(context).load(DEFAULT_OTHER_PROFILE_IMAGE).into(receivedMessageImageHolder.profileImage);
                 receivedMessageImageHolder.nameText.setText("SweetBiz");
                 String timeMessageImageReceived= df.format(message.getCreatedAt()*1000);
                 receivedMessageImageHolder.timeText.setText(timeMessageImageReceived);

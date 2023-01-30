@@ -13,15 +13,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="100dp">
+        android:paddingBottom="60dp">
 
         <ImageView
             android:id="@+id/ItemImage"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,6 +45,17 @@
         android:text="ItemDescription"
         app:layout_constraintStart_toStartOf="@+id/ItemName"
         app:layout_constraintTop_toBottomOf="@+id/ItemName" />
+
+        <TextView
+            android:id="@+id/itemSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Sizes: 8x3 or 8x5 (inches round pan)"
+            app:layout_constraintStart_toStartOf="@+id/ItemPrice"
+            app:layout_constraintTop_toBottomOf="@+id/ItemPrice" />
+
+
 
         <TextView
             android:id="@+id/ItemPrice"
@@ -192,8 +201,8 @@
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_anchor="@+id/AddToCart"
+        app:layout_anchor="@+id/cartIcon"
+        android:gravity="bottom"
         app:layout_anchorGravity="center">
 
     </com.google.android.material.bottomappbar.BottomAppBar>
@@ -214,29 +223,42 @@
         android:id="@+id/AddToCart"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_gravity="bottom|start"
+        android:layout_gravity="bottom|center"
         android:padding="0dp"
         android:text="ADD TO CART"
         android:gravity="center"
         android:textSize="12sp"
-        app:layout_anchor="@id/BuyNow"
-        android:layout_marginRight="140dp"
+        android:layout_marginBottom="15dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/BuyNow"
         android:padding="0dp"
-        android:layout_marginEnd="10dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="12sp"
+        android:layout_gravity="bottom|center"
+        android:gravity="center"
+        android:text="BUY"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white"
+        android:layout_marginBottom="15dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/Reserve"
+        android:padding="0dp"
+        android:layout_marginEnd="15dp"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:textSize="12sp"
         android:layout_gravity="bottom|end"
         android:gravity="center"
-        android:text="BUY NOW"
-        android:backgroundTint="@color/red"
-        android:textColor="@color/white"
+        android:text="Reserve"
         android:layout_marginBottom="15dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"/>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

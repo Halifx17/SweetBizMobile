@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -53,7 +54,7 @@ public class MessagesFragment extends Fragment {
 
     RecyclerView recyclerView;
     ArrayList<Message> list;
-    DatabaseReference databaseReference, chatsDatabaseReference, chatMessagesDatabaseReference;
+    DatabaseReference databaseReference, chatsDatabaseReference, chatMessagesDatabaseReference, userDatabaseReference;
     StorageReference storageReference;
     MessageListAdapter messageListAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -62,7 +63,8 @@ public class MessagesFragment extends Fragment {
     FirebaseUser user;
     FirebaseAuth mAuth;
 
-    String userID;
+    String userID, userName, userProfilePic, userEmail, userRole, finalUserProfilePic, finalUserProfileName;
+    TextView chatUserName, chatUserEmail, chatUserRole, chatUserProfilePic;
 
     final int CHOOSE_IMAGE = 100;
 
@@ -135,7 +137,18 @@ public class MessagesFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("Chats").child(userID);
         chatsDatabaseReference = FirebaseDatabase.getInstance().getReference("Chats").child(userID);
         chatMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference("ChatMessages").child(userID);
+        userDatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
 
+
+        chatUserName = view.findViewById(R.id.chatUserName);
+        chatUserEmail = view.findViewById(R.id.chatUserEmail);
+        chatUserRole = view.findViewById(R.id.chatUserRole);
+        chatUserProfilePic = view.findViewById(R.id.chatUserProfilePic);
+
+        chatUserName.setVisibility(View.GONE);
+        chatUserEmail.setVisibility(View.GONE);
+        chatUserRole.setVisibility(View.GONE);
+        chatUserProfilePic.setVisibility(View.GONE);
 
         sendBtn = view.findViewById(R.id.button_gchat_send);
         imageBtn = view.findViewById(R.id.chatImgBtn);
@@ -146,6 +159,37 @@ public class MessagesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         messageListAdapter = new MessageListAdapter(getContext(),list);
         recyclerView.setAdapter(messageListAdapter);
+
+        userDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+
+                if(user != null){
+                    userName = user.getUsername();
+                    userProfilePic = user.getProfilePic();
+                    userEmail = user.getEmail();
+                    userRole = user.getRole();
+
+                    chatUserName.setText(userName);
+                    chatUserEmail.setText(userEmail);
+                    chatUserRole.setText(userRole);
+                    chatUserProfilePic.setText(userProfilePic);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -184,12 +228,16 @@ public class MessagesFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+
+
                 dateFormat = new SimpleDateFormat("d-MMM-yyyy h:mm a");
                 stringDate = dateFormat.format(Calendar.getInstance().getTime());
                 longDate = new Date().getTime();
                 trimLongDate = longDate / 1000;
                 timeSort = -trimLongDate;
 
+                finalUserProfilePic = chatUserProfilePic.getText().toString();
+                finalUserProfileName = chatUserName.getText().toString();
 
                 messageTxt = editMessage.getText().toString().trim();
                 if (TextUtils.isEmpty(messageTxt)) {
@@ -200,7 +248,9 @@ public class MessagesFragment extends Fragment {
 
 
                 Message message = new Message(messageTxt, userID, trimLongDate);
-                MessagesChat messageschat = new MessagesChat(messageTxt, userID, trimLongDate, timeSort);
+                MessagesChat messageschat = new MessagesChat(messageTxt,userID,finalUserProfileName,finalUserProfilePic,"user",trimLongDate,timeSort);
+             //   MessagesChat messageschat = new MessagesChat(messageTxt,userID,finalUserProfileName,finalUserProfilePic,trimLongDate,timeSort);
+             //   MessagesChat messageschat = new MessagesChat(messageTxt, userID, trimLongDate, timeSort);
 
                 chatsDatabaseReference.push().setValue(message).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -288,7 +338,7 @@ public class MessagesFragment extends Fragment {
 
 
                 Message message = new Message(imageName,userID,trimLongDate);
-                MessagesChat messageschat = new MessagesChat(imageName,userID,trimLongDate,timeSort);
+                MessagesChat messageschat = new MessagesChat(imageName,userID,finalUserProfileName,finalUserProfilePic,"user",trimLongDate,timeSort);
 
                 chatsDatabaseReference.push().setValue(message).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

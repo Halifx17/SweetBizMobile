@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipeRefreshLayoutPizza"
+    tools:context=".CustomCakes">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="100dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:fontFamily="@font/antic"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="Customize Your Cake"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCustomCakeSize"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:focusableInTouchMode="true"
+                android:hint="Select Size (8 inches round pan)"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteCustomCakeSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="+"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutCustomCakeSize"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutCustomCakeSize"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutCustomCakeSize" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="₱"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                app:layout_constraintStart_toEndOf="@+id/textView7"
+                app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/customCakeSizePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toTopOf="@+id/textView7"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCustomCakeCake"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:hint="Select Cake"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCustomCakeSize"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutCustomCakeSize"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCustomCakeSize">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteCakeCake"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="+"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutCustomCakeCake"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutCustomCakeCake"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutCustomCakeCake" />
+
+            <TextView
+                android:id="@+id/textView96"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="₱"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView77"
+                app:layout_constraintStart_toEndOf="@+id/textView77"
+                app:layout_constraintTop_toTopOf="@+id/textView77" />
+
+            <TextView
+                android:id="@+id/customCakeCakePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView77"
+                app:layout_constraintStart_toEndOf="@+id/textView96"
+                app:layout_constraintTop_toTopOf="@+id/textView77"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCustomCakeSyrup"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:hint="Select Syrup"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCustomCakeCake"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutCustomCakeCake"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCustomCakeCake">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteCakeSyrup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/textView777"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="+"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutCustomCakeSyrup"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutCustomCakeSyrup"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutCustomCakeSyrup" />
+
+            <TextView
+                android:id="@+id/textView976"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="₱"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView777"
+                app:layout_constraintStart_toEndOf="@+id/textView777"
+                app:layout_constraintTop_toTopOf="@+id/textView777" />
+
+            <TextView
+                android:id="@+id/customCakeSyrupPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView777"
+                app:layout_constraintStart_toEndOf="@+id/textView976"
+                app:layout_constraintTop_toTopOf="@+id/textView777"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCustomCakeFilling"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:hint="Select Filling"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCustomCakeSyrup"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutCustomCakeSyrup"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCustomCakeSyrup">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteCakeFilling"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/textView7877"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="+"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutCustomCakeFilling"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutCustomCakeFilling"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutCustomCakeFilling" />
+
+            <TextView
+                android:id="@+id/textView9876"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="₱"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7877"
+                app:layout_constraintStart_toEndOf="@+id/textView7877"
+                app:layout_constraintTop_toTopOf="@+id/textView7877" />
+
+            <TextView
+                android:id="@+id/customCakeFillingPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7877"
+                app:layout_constraintStart_toEndOf="@+id/textView9876"
+                app:layout_constraintTop_toTopOf="@+id/textView7877"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCustomCakeIcing"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:hint="Select Icing"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCustomCakeFilling"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutCustomCakeFilling"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCustomCakeFilling">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteCakeIcing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/textView781777"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="+"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutCustomCakeIcing"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutCustomCakeIcing"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutCustomCakeIcing" />
+
+            <TextView
+                android:id="@+id/textView918776"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="₱"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView781777"
+                app:layout_constraintStart_toEndOf="@+id/textView781777"
+                app:layout_constraintTop_toTopOf="@+id/textView781777" />
+
+            <TextView
+                android:id="@+id/customCakeIcingPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView781777"
+                app:layout_constraintStart_toEndOf="@+id/textView918776"
+                app:layout_constraintTop_toTopOf="@+id/textView781777"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCustomCakeDecorations"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:hint="Select Decorations"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCustomCakeIcing"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutCustomCakeIcing"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCustomCakeIcing">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteCakeDecorations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/textView7819777"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="+"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutCustomCakeDecorations"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutCustomCakeDecorations"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutCustomCakeDecorations" />
+
+            <TextView
+                android:id="@+id/textView9189776"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="₱"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7819777"
+                app:layout_constraintStart_toEndOf="@+id/textView7819777"
+                app:layout_constraintTop_toTopOf="@+id/textView7819777" />
+
+            <TextView
+                android:id="@+id/customCakeDecorationsPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7819777"
+                app:layout_constraintStart_toEndOf="@+id/textView9189776"
+                app:layout_constraintTop_toTopOf="@+id/textView7819777"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <TextView
+                android:id="@+id/customCakeTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                app:layout_constraintEnd_toEndOf="@+id/customCakeDecorationsPrice"
+                app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:text="₱"
+                android:textColor="@color/red"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/customCakeTotalPrice"
+                app:layout_constraintEnd_toStartOf="@+id/customCakeTotalPrice"
+                app:layout_constraintTop_toTopOf="@+id/customCakeTotalPrice" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/antic"
+                android:text="Total:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCustomCakeDecorations" />
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_anchorGravity="center">
+
+
+
+
+
+
+
+
+
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
+        android:id="@+id/checkOutCustomizeCakeBtn"
+        android:padding="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom|start"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:text="Buy Now"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
+        android:layout_marginBottom="15dp" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/customCakeReserveBtn"
+        android:padding="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="12sp"
+        android:layout_gravity="bottom|end"
+        android:gravity="center"
+        android:text="Reserve"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"/>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
